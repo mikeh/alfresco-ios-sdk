@@ -72,10 +72,10 @@
                     }
                     else
                     {
-                        STAssertTrueWeakSelf([favSite.identifier isEqualToString:weakSelf.testSiteName], @"The favorite site should be %@ - but received %@", weakSelf.testSiteName, favSite.identifier);
-                        STAssertTrueWeakSelf(favSite.isFavorite, @"site %@ should be set to isFavorite", favSite.identifier);
-                        STAssertTrueWeakSelf(favSite.isPendingMember == remoteSite.isPendingMember, @"pending state should be the same for favourited site");
-                        STAssertTrueWeakSelf(favSite.isMember == remoteSite.isMember, @"member state should be the same for favourited site");
+                        STAssertTrue([favSite.identifier isEqualToString:weakSelf.testSiteName], @"The favorite site should be %@ - but received %@", weakSelf.testSiteName, favSite.identifier);
+                        STAssertTrue(favSite.isFavorite, @"site %@ should be set to isFavorite", favSite.identifier);
+                        STAssertTrue(favSite.isPendingMember == remoteSite.isPendingMember, @"pending state should be the same for favourited site");
+                        STAssertTrue(favSite.isMember == remoteSite.isMember, @"member state should be the same for favourited site");
                         [weakSelf.siteService removeFavoriteSite:favSite completionBlock:^(AlfrescoSite *unFavSite, NSError *unFavError){
                             if (nil == unFavSite)
                             {
@@ -85,10 +85,10 @@
                             }
                             else
                             {
-                                STAssertTrueWeakSelf([unFavSite.identifier isEqualToString:weakSelf.testSiteName], @"The favorite site should be %@ - but instead we got %@", weakSelf.testSiteName, favSite.identifier);
-                                STAssertFalseWeakSelf(unFavSite.isFavorite, @"site %@ should no longer be a favorite",unFavSite.identifier);
-                                STAssertTrueWeakSelf(unFavSite.isPendingMember == remoteSite.isPendingMember, @"pending state should be the same for unfavourited site");
-                                STAssertTrueWeakSelf(unFavSite.isMember == remoteSite.isMember, @"member state should be the same for unfavourited site");
+                                STAssertTrue([unFavSite.identifier isEqualToString:weakSelf.testSiteName], @"The favorite site should be %@ - but instead we got %@", weakSelf.testSiteName, favSite.identifier);
+                                STAssertFalse(unFavSite.isFavorite, @"site %@ should no longer be a favorite",unFavSite.identifier);
+                                STAssertTrue(unFavSite.isPendingMember == remoteSite.isPendingMember, @"pending state should be the same for unfavourited site");
+                                STAssertTrue(unFavSite.isMember == remoteSite.isMember, @"member state should be the same for unfavourited site");
                                 weakSelf.lastTestSuccessful = YES;
                                 weakSelf.callbackCompleted = YES;
                             }

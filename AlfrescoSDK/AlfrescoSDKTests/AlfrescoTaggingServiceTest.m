@@ -212,7 +212,7 @@
                  else
                  {
                      weakSelf.lastTestSuccessful = YES;
-                     STAssertTrueWeakSelf(success, @"a dummy test to see if we still have the retain cycle problem");
+                     STAssertTrue(success, @"a dummy test to see if we still have the retain cycle problem");
                      [weakSelf.taggingService retrieveTagsForNode:weakSelf.testAlfrescoDocument completionBlock:^(NSArray *tags, NSError *error){
                          if (nil == tags)
                          {
@@ -222,8 +222,8 @@
                          else
                          {
                              int count = tags.count;
-                             STAssertNotNilWeakSelf(tags, @"tags should not be nil");
-                             STAssertTrueWeakSelf(count > 0, @"Count should be > 0, and is in fact %d",count);
+                             STAssertNotNil(tags, @"tags should not be nil");
+                             STAssertTrue(count > 0, @"Count should be > 0, and is in fact %d",count);
                              NSString *testTag = [testtags objectAtIndex:0];
                              BOOL found = NO;
                              for (AlfrescoTag *tag in tags)
@@ -234,7 +234,7 @@
                                      break;
                                  }
                              }
-                             STAssertTrueWeakSelf(found, @"We should have found the tag %@", testTag);
+                             STAssertTrue(found, @"We should have found the tag %@", testTag);
                              weakSelf.lastTestSuccessful = YES;
                          }
                          weakSelf.callbackCompleted = YES;

@@ -198,9 +198,9 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
             }
             else
             {
-//                STAssertTrueWeakSelf([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+//                STAssertTrue([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
                 
                 [weakSelf.commentService retrieveCommentsForNode:weakSelf.testAlfrescoDocument completionBlock:^(NSArray *array, NSError *error) {
                     if (nil == array)
@@ -211,16 +211,16 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
                     }
                     else
                     {
-                        STAssertNotNilWeakSelf(array, @"returned array of comments should not be nil");
-                        STAssertTrueWeakSelf(1 == array.count, @"expected one comment for the node but received %lu", (unsigned long)array.count);
+                        STAssertNotNil(array, @"returned array of comments should not be nil");
+                        STAssertTrue(1 == array.count, @"expected one comment for the node but received %lu", (unsigned long)array.count);
                         if (array.count > 0)
                         {
-//                            STAssertTrueWeakSelf([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                            STAssertTrueWeakSelf(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                            STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
-                            STAssertNotNilWeakSelf(comment.createdAt, @"createdAt should not be nil");
-                            STAssertNotNilWeakSelf(comment.modifiedAt, @"modifiedAt should not be nil");
-                            STAssertFalseWeakSelf(comment.isEdited, @"isEdited should return false");
+//                            STAssertTrue([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                            STAssertTrue(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                            STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+                            STAssertNotNil(comment.createdAt, @"createdAt should not be nil");
+                            STAssertNotNil(comment.modifiedAt, @"modifiedAt should not be nil");
+                            STAssertFalse(comment.isEdited, @"isEdited should return false");
                         }
                         [weakSelf.commentService deleteCommentFromNode:weakSelf.testAlfrescoDocument comment:comment completionBlock:^(BOOL success, NSError *error) {
                             if (!success)
@@ -272,9 +272,9 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
             else
             {
                 __block AlfrescoComment *strongComment = comment;
-//                STAssertTrueWeakSelf([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+//                STAssertTrue([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
                 
                 [weakSelf.commentService retrieveCommentsForNode:weakSelf.testAlfrescoDocument completionBlock:^(NSArray *array, NSError *error) {
                     if (nil == array)
@@ -285,15 +285,15 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
                     }
                     else
                     {
-                        STAssertNotNilWeakSelf(array, @"returned array of comments should not be nil");
-                        STAssertTrueWeakSelf(1 == array.count, @"expected one comment for the node but received %lu", (unsigned long)array.count);
+                        STAssertNotNil(array, @"returned array of comments should not be nil");
+                        STAssertTrue(1 == array.count, @"expected one comment for the node but received %lu", (unsigned long)array.count);
                         if (array.count > 0)
                         {
-//                            STAssertTrueWeakSelf([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                            STAssertTrueWeakSelf(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                            STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
-                            STAssertNotNilWeakSelf(comment.createdAt, @"createdAt should not be nil");
-                            STAssertNotNilWeakSelf(comment.modifiedAt, @"modifiedAt should not be nil");
+//                            STAssertTrue([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                            STAssertTrue(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                            STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+                            STAssertNotNil(comment.createdAt, @"createdAt should not be nil");
+                            STAssertNotNil(comment.modifiedAt, @"modifiedAt should not be nil");
                         }
                         [weakSelf.commentService deleteCommentFromNode:weakSelf.testAlfrescoDocument comment:strongComment completionBlock:^(BOOL success, NSError *error) {
                             if (!success)
@@ -423,11 +423,11 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
             }
             else
             {
-                STAssertTrueWeakSelf([comment.content isEqualToString:content], @"comment should be %@, but received %@", content, comment.content);
-                STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+                STAssertTrue([comment.content isEqualToString:content], @"comment should be %@, but received %@", content, comment.content);
+                STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
                 if (!weakSelf.isCloud)
                 {
-                    STAssertTrueWeakSelf([comment.title isEqualToString:title], @"comment title should be %@, but received %@", title, comment.title);
+                    STAssertTrue([comment.title isEqualToString:title], @"comment title should be %@, but received %@", title, comment.title);
                 }
                 [weakSelf.commentService retrieveCommentsForNode:weakSelf.testAlfrescoDocument completionBlock:^(NSArray *array, NSError *error) {
                     if (nil == array)
@@ -438,19 +438,19 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
                     }
                     else
                     {
-                        STAssertNotNilWeakSelf(array, @"returned array of comments should not be nil");
-                        STAssertTrueWeakSelf(1 == array.count, @"expected one comment for the node but received %lu", (unsigned long)array.count);
+                        STAssertNotNil(array, @"returned array of comments should not be nil");
+                        STAssertTrue(1 == array.count, @"expected one comment for the node but received %lu", (unsigned long)array.count);
                         if (array.count > 0)
                         {
                             AlfrescoComment *retrievedComment = (AlfrescoComment *)[array objectAtIndex:0];
-                            STAssertTrueWeakSelf([retrievedComment.content isEqualToString:content], @"comment should be %@, but received %@", content, retrievedComment.content);
+                            STAssertTrue([retrievedComment.content isEqualToString:content], @"comment should be %@, but received %@", content, retrievedComment.content);
                             if (!weakSelf.isCloud)
                             {
-                                STAssertTrueWeakSelf([retrievedComment.title isEqualToString:title], @"comment title should be %@, but received %@", title, retrievedComment.title);
+                                STAssertTrue([retrievedComment.title isEqualToString:title], @"comment title should be %@, but received %@", title, retrievedComment.title);
                             }
-                            STAssertTrueWeakSelf([retrievedComment.createdBy isEqualToString:weakSelf.userName], @"retrievedComment.createdBy should be %@ but received %@", weakSelf.userName, retrievedComment.createdBy);
-                            STAssertNotNilWeakSelf(retrievedComment.createdAt, @"createdAt should not be nil");
-                            STAssertNotNilWeakSelf(retrievedComment.modifiedAt, @"modifiedAt should not be nil");
+                            STAssertTrue([retrievedComment.createdBy isEqualToString:weakSelf.userName], @"retrievedComment.createdBy should be %@ but received %@", weakSelf.userName, retrievedComment.createdBy);
+                            STAssertNotNil(retrievedComment.createdAt, @"createdAt should not be nil");
+                            STAssertNotNil(retrievedComment.modifiedAt, @"modifiedAt should not be nil");
                         }
                         [weakSelf.commentService deleteCommentFromNode:weakSelf.testAlfrescoDocument comment:comment completionBlock:^(BOOL success, NSError *error) {
                             if (!success)
@@ -502,11 +502,11 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
             }
             else
             {
-                STAssertTrueWeakSelf([comment.content isEqualToString:content], @"comment should be %@, but received %@", content, comment.content);
-                STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+                STAssertTrue([comment.content isEqualToString:content], @"comment should be %@, but received %@", content, comment.content);
+                STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
                 if (!weakSelf.isCloud)
                 {
-                    STAssertTrueWeakSelf([comment.title isEqualToString:title], @"comment title should be %@, but received %@", title, comment.title);
+                    STAssertTrue([comment.title isEqualToString:title], @"comment title should be %@, but received %@", title, comment.title);
                 }
                 [weakSelf.commentService retrieveCommentsForNode:weakSelf.testAlfrescoDocument completionBlock:^(NSArray *array, NSError *error) {
                     if (nil == array)
@@ -517,19 +517,19 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
                     }
                     else
                     {
-                        STAssertNotNilWeakSelf(array, @"returned array of comments should not be nil");
-                        STAssertTrueWeakSelf(1 == array.count, @"expected one comment for the node but received %lu", (unsigned long)array.count);
+                        STAssertNotNil(array, @"returned array of comments should not be nil");
+                        STAssertTrue(1 == array.count, @"expected one comment for the node but received %lu", (unsigned long)array.count);
                         if (array.count > 0)
                         {
                             AlfrescoComment *retrievedComment = (AlfrescoComment *)[array objectAtIndex:0];
-                            STAssertTrueWeakSelf([retrievedComment.content isEqualToString:content], @"comment should be %@, but received %@", content, retrievedComment.content);
+                            STAssertTrue([retrievedComment.content isEqualToString:content], @"comment should be %@, but received %@", content, retrievedComment.content);
                             if (!weakSelf.isCloud)
                             {
-                                STAssertTrueWeakSelf([retrievedComment.title isEqualToString:title], @"comment title should be %@, but received %@", title, retrievedComment.title);
+                                STAssertTrue([retrievedComment.title isEqualToString:title], @"comment title should be %@, but received %@", title, retrievedComment.title);
                             }
-                            STAssertTrueWeakSelf([retrievedComment.createdBy isEqualToString:weakSelf.userName], @"retrievedComment.createdBy should be %@ but received %@", weakSelf.userName, retrievedComment.createdBy);
-                            STAssertNotNilWeakSelf(retrievedComment.createdAt, @"createdAt should not be nil");
-                            STAssertNotNilWeakSelf(retrievedComment.modifiedAt, @"modifiedAt should not be nil");
+                            STAssertTrue([retrievedComment.createdBy isEqualToString:weakSelf.userName], @"retrievedComment.createdBy should be %@ but received %@", weakSelf.userName, retrievedComment.createdBy);
+                            STAssertNotNil(retrievedComment.createdAt, @"createdAt should not be nil");
+                            STAssertNotNil(retrievedComment.modifiedAt, @"modifiedAt should not be nil");
                         }
                         [weakSelf.commentService deleteCommentFromNode:weakSelf.testAlfrescoDocument comment:comment completionBlock:^(BOOL success, NSError *error) {
                             if (!success)
@@ -581,9 +581,9 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
             }
             else
             {
-//                STAssertTrueWeakSelf([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+//                STAssertTrue([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
                 
                 [weakSelf.commentService updateCommentOnNode:weakSelf.testAlfrescoDocument comment:comment content:kAlfrescoTestCommentContent2 completionBlock:^(AlfrescoComment *comment, NSError *error) {
                     if (nil == comment)
@@ -594,8 +594,8 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
                     }
                     else
                     {
-//                        STAssertTrueWeakSelf([comment.content isEqualToString:kAlfrescoTestCommentContent2], @"comment should be %@, but received %@", kAlfrescoTestCommentContent2, comment.content);
-                        STAssertTrueWeakSelf(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent2], @"comment should be %@, but received %@", kAlfrescoTestCommentContent2, comment.content);
+//                        STAssertTrue([comment.content isEqualToString:kAlfrescoTestCommentContent2], @"comment should be %@, but received %@", kAlfrescoTestCommentContent2, comment.content);
+                        STAssertTrue(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent2], @"comment should be %@, but received %@", kAlfrescoTestCommentContent2, comment.content);
                         
                         [weakSelf.commentService deleteCommentFromNode:weakSelf.testAlfrescoDocument comment:comment completionBlock:^(BOOL success, NSError *error) {
                             if (!success)
@@ -647,9 +647,9 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
             }
             else
             {
-//                STAssertTrueWeakSelf([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+//                STAssertTrue([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
                 
                 [weakSelf.commentService updateCommentOnNode:weakSelf.testAlfrescoDocument comment:comment content:content completionBlock:^(AlfrescoComment *comment, NSError *error) {
                     if (nil == comment)
@@ -660,7 +660,7 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
                     }
                     else
                     {
-                        STAssertTrueWeakSelf([comment.content isEqualToString:content], @"comment should be %@, but received %@", content, comment.content);
+                        STAssertTrue([comment.content isEqualToString:content], @"comment should be %@, but received %@", content, comment.content);
                         
                         [weakSelf.commentService deleteCommentFromNode:weakSelf.testAlfrescoDocument comment:comment completionBlock:^(BOOL success, NSError *error) {
                             if (!success)
@@ -711,9 +711,9 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
             }
             else
             {
-//                STAssertTrueWeakSelf([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
-                STAssertTrueWeakSelf([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
+//                STAssertTrue([comment.content isEqualToString:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue(NSOrderedSame == [comment.content caseInsensitiveCompare:kAlfrescoTestCommentContent], @"comment should be %@, but received %@", kAlfrescoTestCommentContent, comment.content);
+                STAssertTrue([comment.createdBy isEqualToString:weakSelf.userName], @"comment.createdBy should be %@ but received %@", weakSelf.userName, comment.createdBy);
                 
                 [weakSelf.commentService updateCommentOnNode:weakSelf.testAlfrescoDocument comment:comment content:content completionBlock:^(AlfrescoComment *comment, NSError *error) {
                     if (nil == comment)
@@ -724,7 +724,7 @@ static NSString * const kAlfrescoTestCommentContent2 = @"<p>test2</p>";
                     }
                     else
                     {
-                        STAssertTrueWeakSelf([comment.content isEqualToString:content], @"comment should be %@, but received %@", content, comment.content);
+                        STAssertTrue([comment.content isEqualToString:content], @"comment should be %@, but received %@", content, comment.content);
                         
                         [weakSelf.commentService deleteCommentFromNode:weakSelf.testAlfrescoDocument comment:comment completionBlock:^(BOOL success, NSError *error) {
                             if (!success)
