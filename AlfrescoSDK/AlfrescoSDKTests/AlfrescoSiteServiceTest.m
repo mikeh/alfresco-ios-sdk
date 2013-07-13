@@ -36,14 +36,14 @@
              
              if (nil == array)
              {
-                 STAssertNil(array,@"if failure, the array should be nil");
+                 XCTAssertNil(array,@"if failure, the array should be nil");
                  self.lastTestSuccessful = NO;
                  self.lastTestFailureMessage = [NSString stringWithFormat:@"%@ - %@", [error localizedDescription], [error localizedFailureReason]];
              }
              else
              {
-                 STAssertNotNil(array,@"the array should not be nil");
-                 STAssertTrue(array.count > 1, @"Site count should be greater than 1 not %i", array.count);
+                 XCTAssertNotNil(array,@"the array should not be nil");
+                 XCTAssertTrue(array.count > 1, @"Site count should be greater than 1 not %i", array.count);
                  self.lastTestSuccessful = YES;
              }
              self.callbackCompleted = YES;
@@ -51,11 +51,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -78,13 +78,13 @@
          {
              if (nil == pagingResult)
              {
-                 STAssertNil(pagingResult,@"if failure, the paging result should be nil");
+                 XCTAssertNil(pagingResult,@"if failure, the paging result should be nil");
                  self.lastTestSuccessful = NO;
                  self.lastTestFailureMessage = [NSString stringWithFormat:@"%@ - %@", [error localizedDescription], [error localizedFailureReason]];
              }
              else
              {
-                 STAssertNotNil(pagingResult, @"paged result should not be nil");
+                 XCTAssertNotNil(pagingResult, @"paged result should not be nil");
                  self.lastTestSuccessful = YES;
              }
              
@@ -94,11 +94,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -116,17 +116,17 @@
          {
              if (nil == array)
              {
-                 STAssertNil(array,@"if failure, the array should be nil");
+                 XCTAssertNil(array,@"if failure, the array should be nil");
                  self.lastTestSuccessful = NO;
                  self.lastTestFailureMessage = [NSString stringWithFormat:@"%@ - %@", [error localizedDescription], [error localizedFailureReason]];
              }
              else
              {
-                 STAssertNotNil(array,@"the array should not be nil");
-                 STAssertTrue(array.count > 1, @"Expected multiple sites");
+                 XCTAssertNotNil(array,@"the array should not be nil");
+                 XCTAssertTrue(array.count > 1, @"Expected multiple sites");
                  for (AlfrescoSite *site in array)
                  {
-                     STAssertTrue(site.isMember, @"site %@ should be marked as being a member site", site.identifier);
+                     XCTAssertTrue(site.isMember, @"site %@ should be marked as being a member site", site.identifier);
                  }
                  self.lastTestSuccessful = YES;
              }
@@ -135,11 +135,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -159,16 +159,16 @@
          {
              if (nil == pagingResult)
              {
-                 STAssertNil(pagingResult,@"if failure, the paging result should be nil");
+                 XCTAssertNil(pagingResult,@"if failure, the paging result should be nil");
                  self.lastTestSuccessful = NO;
                  self.lastTestFailureMessage = [NSString stringWithFormat:@"%@ - %@", [error localizedDescription], [error localizedFailureReason]];
              }
              else
              {
-                 STAssertNotNil(pagingResult, @"paged result should not be nil");
+                 XCTAssertNotNil(pagingResult, @"paged result should not be nil");
                  for (AlfrescoSite *site in pagingResult.objects)
                  {
-                     STAssertTrue(site.isMember, @"site %@ should be marked as being a member site", site.identifier);
+                     XCTAssertTrue(site.isMember, @"site %@ should be marked as being a member site", site.identifier);
                  }
                  self.lastTestSuccessful = YES;
              }
@@ -176,11 +176,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -198,17 +198,17 @@
          {
              if (nil == array)
              {
-                 STAssertNil(array,@"if failure, the array should be nil");
+                 XCTAssertNil(array,@"if failure, the array should be nil");
                  self.lastTestSuccessful = NO;
                  self.lastTestFailureMessage = [NSString stringWithFormat:@"%@ - %@", [error localizedDescription], [error localizedFailureReason]];
              }
              else
              {
-                 STAssertNotNil(array,@"the array should not be nil");
-                 STAssertTrue(array.count >= 1, @"Expected multiple favorite sites but got %d",array.count);
+                 XCTAssertNotNil(array,@"the array should not be nil");
+                 XCTAssertTrue(array.count >= 1, @"Expected multiple favorite sites but got %d",array.count);
                  for (AlfrescoSite *site in array)
                  {
-                     STAssertTrue(site.isFavorite, @"site %@ should be marked as favourite", site.identifier);
+                     XCTAssertTrue(site.isFavorite, @"site %@ should be marked as favourite", site.identifier);
                  }
                  self.lastTestSuccessful = YES;
              }
@@ -217,11 +217,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -243,25 +243,25 @@
          {
              if (nil == pagingResult)
              {
-                 STAssertNil(pagingResult,@"if failure, the paging result should be nil");
+                 XCTAssertNil(pagingResult,@"if failure, the paging result should be nil");
                  self.lastTestSuccessful = NO;
                  self.lastTestFailureMessage = [NSString stringWithFormat:@"%@ - %@", [error localizedDescription], [error localizedFailureReason]];
              }
              else
              {
-                 STAssertNotNil(pagingResult, @"paged result should not be nil");
-                 STAssertTrue(pagingResult.totalItems >= 1, @"Total favorite site count should be at least 1, but we got %d", pagingResult.totalItems);
+                 XCTAssertNotNil(pagingResult, @"paged result should not be nil");
+                 XCTAssertTrue(pagingResult.totalItems >= 1, @"Total favorite site count should be at least 1, but we got %d", pagingResult.totalItems);
                  if (pagingResult.totalItems > 1)
                  {
-                     STAssertTrue(pagingResult.objects.count == 1, @"Favorite site count should be 1, instead we get %d", pagingResult.objects.count);
+                     XCTAssertTrue(pagingResult.objects.count == 1, @"Favorite site count should be 1, instead we get %d", pagingResult.objects.count);
                      for (AlfrescoSite *site in pagingResult.objects)
                      {
-                         STAssertTrue(site.isFavorite, @"site %@ should be marked as favourite", site.identifier);
+                         XCTAssertTrue(site.isFavorite, @"site %@ should be marked as favourite", site.identifier);
                      }
                  }
                  else
                  {
-                     STAssertTrue(pagingResult.objects.count == 0, @"Favorite site count should be 0, instead we get %d", pagingResult.objects.count);
+                     XCTAssertTrue(pagingResult.objects.count == 0, @"Favorite site count should be 0, instead we get %d", pagingResult.objects.count);
                  }
                  self.lastTestSuccessful = YES;
              }
@@ -270,11 +270,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -298,9 +298,9 @@
              }
              else
              {
-                 STAssertTrue([site.shortName isEqualToString:self.testSiteName], @"Expected %@ site but got back %@", self.testSiteName, site.shortName);
-                 STAssertNotNil(site.title, @"site title should not be nil");
-                 STAssertNotNil(site.summary, @"site summary should not be nil");
+                 XCTAssertTrue([site.shortName isEqualToString:self.testSiteName], @"Expected %@ site but got back %@", self.testSiteName, site.shortName);
+                 XCTAssertNotNil(site.title, @"site title should not be nil");
+                 XCTAssertNotNil(site.summary, @"site summary should not be nil");
                  self.lastTestSuccessful = YES;
              }
              
@@ -309,11 +309,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -344,11 +344,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -373,8 +373,8 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:@"documentLibrary"], @"Folder name should be documentLibrary");
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:@"documentLibrary"], @"Folder name should be documentLibrary");
                  
                  self.lastTestSuccessful = YES;
              }
@@ -384,11 +384,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -418,11 +418,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -443,11 +443,11 @@
             }
             else
             {
-                STAssertTrue(array.count >= 0, @"Array needs to be >= 0");
+                XCTAssertTrue(array.count >= 0, @"Array needs to be >= 0");
                 if (0 < array.count)
                 {
                     [array enumerateObjectsUsingBlock:^(AlfrescoSite *site, NSUInteger index, BOOL *stop){
-                        STAssertTrue(site.isPendingMember, @"The requested site should be in state isPendingMember, but appears not to be.");
+                        XCTAssertTrue(site.isPendingMember, @"The requested site should be in state isPendingMember, but appears not to be.");
                     }];
                 }
                 self.lastTestSuccessful = YES;
@@ -456,11 +456,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }
@@ -483,11 +483,11 @@
             }
             else
             {
-                STAssertTrue(pagingResult.objects.count >= 0, @"Array needs to be >= 0");
+                XCTAssertTrue(pagingResult.objects.count >= 0, @"Array needs to be >= 0");
                 if (0 < pagingResult.objects.count)
                 {
                     [pagingResult.objects enumerateObjectsUsingBlock:^(AlfrescoSite *site, NSUInteger index, BOOL *stop){
-                        STAssertTrue(site.isPendingMember, @"The requested site should be in state isPendingMember, but appears not to be.");
+                        XCTAssertTrue(site.isPendingMember, @"The requested site should be in state isPendingMember, but appears not to be.");
                     }];
                 }
                 self.lastTestSuccessful = YES;
@@ -497,11 +497,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }

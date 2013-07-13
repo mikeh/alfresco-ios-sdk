@@ -56,15 +56,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
                   {
@@ -86,11 +86,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -118,16 +118,16 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
-                 STAssertTrue([folder.type isEqualToString:kAlfrescoTypeFolder], @"we expected object type cm:folder but got %@", folder.type);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertTrue([folder.type isEqualToString:kAlfrescoTypeFolder], @"we expected object type cm:folder but got %@", folder.type);
                  
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
                   {
@@ -149,11 +149,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -181,15 +181,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  
                  [self.dfService createFolderWithName:folderName inParentFolder:self.testDocFolder properties:props
                                       completionBlock:^(AlfrescoFolder *duplicatedFolder, NSError *dupError)
@@ -197,7 +197,7 @@
                       if (nil == duplicatedFolder)
                       {
                           self.lastTestSuccessful = YES;
-                          STAssertNotNil(dupError, @"We expected a valid error object");
+                          XCTAssertNotNil(dupError, @"We expected a valid error object");
                           if (nil != dupError)
                           {
                               AlfrescoLogDebug(@"Returned error message is %@ with error code %d",[dupError localizedDescription], [dupError code]);
@@ -231,11 +231,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -270,8 +270,8 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  __block AlfrescoFolder *strongFolder = folder;
                  
                  [weakService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
@@ -302,11 +302,11 @@
              }
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -341,15 +341,15 @@
              }
              else
              {
-                 STAssertNotNil(unitTestFolder, @"folder should not be nil");
-                 STAssertTrue([unitTestFolder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(unitTestFolder, @"folder should not be nil");
+                 XCTAssertTrue([unitTestFolder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  __block AlfrescoFolder *strongFolder = unitTestFolder;
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = unitTestFolder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  
                  [self.dfService deleteNode:unitTestFolder completionBlock:^(BOOL success, NSError *deleteError)
                   {
@@ -383,11 +383,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -417,15 +417,15 @@
             }
             else
             {
-                STAssertNotNil(folder, @"folder should not be nil");
-                STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                XCTAssertNotNil(folder, @"folder should not be nil");
+                XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                 __block AlfrescoFolder *strongFolder = folder;
                 // check the properties were added at creation time
                 NSDictionary *newFolderProps = folder.properties;
                 AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                 AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                 
                 /**
                  * FIXME: 07/Jun/2013 - Potential transaction completion race condition here..?
@@ -457,11 +457,11 @@
             }
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -493,15 +493,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  __block AlfrescoFolder *strongFolder = folder;
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
                   {
@@ -535,11 +535,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -572,15 +572,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:name], @"folder name should be %@, but instead we got %@",name, folder.name);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:name], @"folder name should be %@, but instead we got %@",name, folder.name);
                  
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:description], @"cm:description property value does not match expected value %@",description);
-                 STAssertTrue([newTitleProp.value isEqualToString:title], @"cm:title property value does not match expected value %@",title);
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:description], @"cm:description property value does not match expected value %@",description);
+                 XCTAssertTrue([newTitleProp.value isEqualToString:title], @"cm:title property value does not match expected value %@",title);
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
                   {
@@ -602,11 +602,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -637,15 +637,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:name], @"folder name should be %@, but instead we got %@",name, folder.name);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:name], @"folder name should be %@, but instead we got %@",name, folder.name);
                  
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:description], @"cm:description property value does not match expected value %@. Instead we get %@",description, newDescriptionProp.value);
-                 STAssertTrue([newTitleProp.value isEqualToString:title], @"cm:title property value does not match expected value %@. Instead we get %@",title, newTitleProp.value);
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:description], @"cm:description property value does not match expected value %@. Instead we get %@",description, newDescriptionProp.value);
+                 XCTAssertTrue([newTitleProp.value isEqualToString:title], @"cm:title property value does not match expected value %@. Instead we get %@",title, newTitleProp.value);
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
                   {
@@ -667,11 +667,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -703,7 +703,7 @@
              {
                  self.lastTestSuccessful = NO;
                  self.lastTestFailureMessage = @"We should not succeed creating a folder with an empty name";
-                 STAssertTrue([folder.name isEqualToString:name], @"folder name should be %@, but instead we got %@",name, folder.name);
+                 XCTAssertTrue([folder.name isEqualToString:name], @"folder name should be %@, but instead we got %@",name, folder.name);
                  
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
@@ -724,11 +724,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -760,7 +760,7 @@
              {
                  self.lastTestSuccessful = NO;
                  self.lastTestFailureMessage = @"We should not succeed creating a folder this special set of characters";
-                 STAssertTrue([folder.name isEqualToString:name], @"folder name should be %@, but instead we got %@",name, folder.name);
+                 XCTAssertTrue([folder.name isEqualToString:name], @"folder name should be %@, but instead we got %@",name, folder.name);
                  
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
@@ -783,11 +783,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -808,7 +808,7 @@
              }
              else
              {
-                 STAssertNotNil(rootFolder,@"root folder should not be nil");
+                 XCTAssertNotNil(rootFolder,@"root folder should not be nil");
                  self.lastTestSuccessful = YES;
              }
              self.callbackCompleted = YES;
@@ -817,11 +817,11 @@
         
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -844,14 +844,14 @@
              }
              else
              {
-                 STAssertTrue(array.count > 0, @"Expected folder children but got %i", array.count);
+                 XCTAssertTrue(array.count > 0, @"Expected folder children but got %i", array.count);
                  if (self.isCloud)
                  {
-                     STAssertTrue([self nodeArray:array containsName:@"Sample Filesrr"], @"Folder children should contain Sample Filesrr");
+                     XCTAssertTrue([self nodeArray:array containsName:@"Sample Filesrr"], @"Folder children should contain Sample Filesrr");
                  }
                  else
                  {
-                     STAssertTrue([self nodeArray:array containsName:@"Data Dictionary"], @"Folder children should contain Data Dictionary");
+                     XCTAssertTrue([self nodeArray:array containsName:@"Data Dictionary"], @"Folder children should contain Data Dictionary");
                  }
                  
                  self.lastTestSuccessful = YES;
@@ -860,11 +860,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -893,15 +893,15 @@
             }
             else
             {
-                STAssertNotNil(folder, @"Folder should not be nil");
-                STAssertTrue([folder.name isEqualToString:folderName], @"Folder name should be %@", folderName);
+                XCTAssertNotNil(folder, @"Folder should not be nil");
+                XCTAssertTrue([folder.name isEqualToString:folderName], @"Folder name should be %@", folderName);
                 
                 // check the properties of the foder are correct
                 NSDictionary *newFolderProps = folder.properties;
                 AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                 AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                STAssertTrue([newDescriptionProp.value isEqualToString:@"Test Description"], @"cm:description property value does not match");
-                STAssertTrue([newTitleProp.value isEqualToString:@"Test Title"], @"cm:title property value does not match");
+                XCTAssertTrue([newDescriptionProp.value isEqualToString:@"Test Description"], @"cm:description property value does not match");
+                XCTAssertTrue([newTitleProp.value isEqualToString:@"Test Title"], @"cm:title property value does not match");
                 
                 // serach folder using paging
                 AlfrescoListingContext *paging = [[AlfrescoListingContext alloc] initWithMaxItems:100 skipCount:0];
@@ -915,7 +915,7 @@
                     }
                     else
                     {
-                        STAssertTrue(pagingResult.totalItems == 0, @"Expected 0 folder children, got back %i", pagingResult.totalItems);
+                        XCTAssertTrue(pagingResult.totalItems == 0, @"Expected 0 folder children, got back %i", pagingResult.totalItems);
                         
                         [weakService deleteNode:blockFolder completionBlock:^(BOOL success, NSError *error)
                          {
@@ -937,11 +937,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -964,18 +964,18 @@
             }
             else
             {
-                STAssertTrue(pagingResult.totalItems > 0, @"Expected children to be returned");
+                XCTAssertTrue(pagingResult.totalItems > 0, @"Expected children to be returned");
                 self.lastTestSuccessful = YES;
             }
             self.callbackCompleted = YES;
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -999,8 +999,8 @@
             }
             else
             {
-                STAssertTrue(pagingResult.objects.count > 0, @"Expecting to return more than one result");
-                STAssertTrue(pagingResult.objects.count <= 10, @"Expecting a maximum of 10 results, instead got %i", pagingResult.objects.count);
+                XCTAssertTrue(pagingResult.objects.count > 0, @"Expecting to return more than one result");
+                XCTAssertTrue(pagingResult.objects.count <= 10, @"Expecting a maximum of 10 results, instead got %i", pagingResult.objects.count);
                 
                 // check if array is sorted correctly
                 NSArray *sortedArray = [pagingResult.objects sortedArrayUsingComparator:^(id a, id b) {
@@ -1016,18 +1016,18 @@
                 
                 BOOL isResultSortedAccordingToModifiedDate = [pagingResult.objects isEqualToArray:sortedArray];
                 
-                STAssertTrue(isResultSortedAccordingToModifiedDate, @"The results where not sorted in descending order according to the modified date");
+                XCTAssertTrue(isResultSortedAccordingToModifiedDate, @"The results where not sorted in descending order according to the modified date");
                 
                 self.lastTestSuccessful = YES;
             }
             self.callbackCompleted = YES;
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1046,7 +1046,7 @@
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSError *sizeError = nil;
         NSDictionary *attributes = [fileManager attributesOfItemAtPath:self.verySmallTestFile error:&sizeError];
-        STAssertNotNil(attributes, @"should be able to get the file attributes");
+        XCTAssertNotNil(attributes, @"should be able to get the file attributes");
         if (!attributes)
         {
             self.lastTestSuccessful = NO;
@@ -1060,7 +1060,7 @@
         NSInputStream *fileInputStream = [[NSInputStream alloc] initWithFileAtPath:self.verySmallTestFile];
         AlfrescoContentStream *contentStream = [[AlfrescoContentStream alloc] initWithStream:fileInputStream mimeType:mimeType length:fileSize];
         
-        STAssertNotNil(fileInputStream, @"we should have been able to create the input stream to the small file");
+        XCTAssertNotNil(fileInputStream, @"we should have been able to create the input stream to the small file");
         if (!fileInputStream)
         {
             self.lastTestSuccessful = NO;
@@ -1086,15 +1086,15 @@
                                    }
                                    else
                                    {
-                                       STAssertNotNil(document, @"document should not be nil");
-                                       STAssertTrue([document.name isEqualToString:documentName], @"folder name should be %@ but instead we got %@",documentName, document.name);
-                                       STAssertTrue([document.type isEqualToString:kAlfrescoTypeContent], @"object type should be cm:content but instead we got %@", document.type);
+                                       XCTAssertNotNil(document, @"document should not be nil");
+                                       XCTAssertTrue([document.name isEqualToString:documentName], @"folder name should be %@ but instead we got %@",documentName, document.name);
+                                       XCTAssertTrue([document.type isEqualToString:kAlfrescoTypeContent], @"object type should be cm:content but instead we got %@", document.type);
                                        // check the properties were added at creation time
                                        NSDictionary *newFolderProps = document.properties;
                                        AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                                        AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                                       STAssertTrue([newDescriptionProp.value isEqualToString:@"Test Description"], @"cm:description property value does not match - we got %@", newDescriptionProp.value);
-                                       STAssertTrue([newTitleProp.value isEqualToString:@"Test Title"], @"cm:title property value does not match - we got %@", newTitleProp.value);
+                                       XCTAssertTrue([newDescriptionProp.value isEqualToString:@"Test Description"], @"cm:description property value does not match - we got %@", newDescriptionProp.value);
+                                       XCTAssertTrue([newTitleProp.value isEqualToString:@"Test Title"], @"cm:title property value does not match - we got %@", newTitleProp.value);
                                        [weakFolderServer deleteNode:document completionBlock:^(BOOL succeeded, NSError *error){
                                            if (succeeded)
                                            {
@@ -1113,11 +1113,11 @@
                                } progressBlock:^(unsigned long long transferred, unsigned long long total){}];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1147,65 +1147,65 @@
         [self.dfService createDocumentWithName:@"createDocumentTest*.jpg" inParentFolder:self.testDocFolder contentFile:self.testImageFile properties:properties completionBlock:^(AlfrescoDocument *document, NSError *error) {
             if (error == nil)
             {
-                STAssertTrue(error != nil, @"Expected an error to be thrown");
+                XCTAssertTrue(error != nil, @"Expected an error to be thrown");
                 self.lastTestSuccessful = NO;
                 self.callbackCompleted = YES;
             }
             else
             {
                 AlfrescoLogError(@"The following error occured trying to create the file: %@ - %@", [error localizedDescription], [error localizedFailureReason]);
-                STAssertFalse(document != nil, @"Expected the document not to be created");
+                XCTAssertFalse(document != nil, @"Expected the document not to be created");
                 
                 // check document with " in the file name
                 [weakFolderServer createDocumentWithName:@"createDocumentTest\".jpg" inParentFolder:self.testDocFolder contentFile:self.testImageFile properties:properties completionBlock:^(AlfrescoDocument *document, NSError *error) {
                     if (error == nil)
                     {
-                        STAssertTrue(error != nil, @"Expected an error to be thrown");
+                        XCTAssertTrue(error != nil, @"Expected an error to be thrown");
                         self.lastTestSuccessful = NO;
                         self.callbackCompleted = YES;
                     }
                     else
                     {
                         AlfrescoLogError(@"The following error occured trying to create the file: %@ - %@", [error localizedDescription], [error localizedFailureReason]);
-                        STAssertFalse(document != nil, @"Expected the document not to be created");
+                        XCTAssertFalse(document != nil, @"Expected the document not to be created");
                         
                         // check document with / and \ in the file name
                         [weakFolderServer createDocumentWithName:@"createDocumentTest\\.jpg" inParentFolder:self.testDocFolder contentFile:self.testImageFile properties:properties completionBlock:^(AlfrescoDocument *document, NSError *error) {
                             if (error == nil)
                             {
-                                STAssertTrue(error != nil, @"Expected an error to be thrown");
+                                XCTAssertTrue(error != nil, @"Expected an error to be thrown");
                                 self.lastTestSuccessful = NO;
                                 self.callbackCompleted = YES;
                             }
                             else
                             {
                                 AlfrescoLogError(@"The following error occured trying to create the file: %@ - %@", [error localizedDescription], [error localizedFailureReason]);
-                                STAssertFalse(document != nil, @"Expected the document not to be created");
+                                XCTAssertFalse(document != nil, @"Expected the document not to be created");
                                 
                                 // check document with empty name
                                 [weakFolderServer createDocumentWithName:@"createDocument//Test.jpg" inParentFolder:self.testDocFolder contentFile:self.testImageFile properties:properties completionBlock:^(AlfrescoDocument *document, NSError *error) {
                                     if (error == nil)
                                     {
-                                        STAssertTrue(error != nil, @"Expected an error to be thrown");
+                                        XCTAssertTrue(error != nil, @"Expected an error to be thrown");
                                         self.lastTestSuccessful = NO;
                                         self.callbackCompleted = YES;
                                     }
                                     else
                                     {
                                         AlfrescoLogError(@"The following error occured trying to create the file: %@ - %@", [error localizedDescription], [error localizedFailureReason]);
-                                        STAssertFalse(document != nil, @"Expected the document not to be created");
+                                        XCTAssertFalse(document != nil, @"Expected the document not to be created");
                                         
                                         // check document with empty name
                                         [weakFolderServer createDocumentWithName:@"" inParentFolder:self.testDocFolder contentFile:self.testImageFile properties:properties completionBlock:^(AlfrescoDocument *document, NSError *error) {
                                             if (error == nil)
                                             {
-                                                STAssertTrue(error != nil, @"Expected an error to be thrown");
+                                                XCTAssertTrue(error != nil, @"Expected an error to be thrown");
                                                 self.lastTestSuccessful = NO;
                                             }
                                             else
                                             {
                                                 AlfrescoLogError(@"The following error occured trying to create the file: %@ - %@", [error localizedDescription], [error localizedFailureReason]);
-                                                STAssertFalse(document != nil, @"Expected the document not to be created");
+                                                XCTAssertFalse(document != nil, @"Expected the document not to be created");
                                                 if (!document)
                                                 {
                                                     self.lastTestSuccessful = YES;
@@ -1238,11 +1238,11 @@
                                  }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1273,15 +1273,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  __block AlfrescoFolder *blockFolder = folder;
                  [weakService retrieveChildrenInFolder:blockFolder completionBlock:^(NSArray *children, NSError *error){
                      if(nil == children)
@@ -1292,7 +1292,7 @@
                      }
                      else
                      {
-                         STAssertTrue(children.count == 0, @"folder should be empty, instead we get %d entries",children.count);
+                         XCTAssertTrue(children.count == 0, @"folder should be empty, instead we get %d entries",children.count);
                          [weakService deleteNode:blockFolder completionBlock:^(BOOL success, NSError *error)
                           {
                               if (!success)
@@ -1317,11 +1317,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1353,15 +1353,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  __block AlfrescoFolder *blockFolder = folder;
                  [weakService retrieveDocumentsInFolder:blockFolder completionBlock:^(NSArray *children, NSError *error){
                      if(nil == children)
@@ -1372,7 +1372,7 @@
                      }
                      else
                      {
-                         STAssertTrue(children.count == 0, @"folder should contain no documents, instead we get %d entries",children.count);
+                         XCTAssertTrue(children.count == 0, @"folder should contain no documents, instead we get %d entries",children.count);
                          [weakService deleteNode:blockFolder completionBlock:^(BOOL success, NSError *error)
                           {
                               if (!success)
@@ -1397,11 +1397,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1432,15 +1432,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  __block AlfrescoFolder *blockFolder = folder;
                  [weakService retrieveFoldersInFolder:blockFolder completionBlock:^(NSArray *children, NSError *error){
                      if(nil == children)
@@ -1451,7 +1451,7 @@
                      }
                      else
                      {
-                         STAssertTrue(children.count == 0, @"folder should contain no folders, instead we get %d entries",children.count);
+                         XCTAssertTrue(children.count == 0, @"folder should contain no folders, instead we get %d entries",children.count);
                          [weakService deleteNode:blockFolder completionBlock:^(BOOL success, NSError *error)
                           {
                               if (!success)
@@ -1476,11 +1476,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1510,7 +1510,7 @@
             else
             {
                 __block int numberOfChildren = array.count;
-                STAssertFalse(0 == numberOfChildren, @"There should be at least 1 child element in the folder");
+                XCTAssertFalse(0 == numberOfChildren, @"There should be at least 1 child element in the folder");
                 [self.dfService retrieveChildrenInFolder:self.testDocFolder listingContext:paging completionBlock:^(AlfrescoPagingResult *pagingResult, NSError *error)
                  {
                      if (nil == pagingResult)
@@ -1520,17 +1520,17 @@
                      }
                      else
                      {
-                         STAssertTrue(pagingResult.totalItems <= numberOfChildren, @"We expected that the total number of items should be less equal %d, but instead we got %d", numberOfChildren, pagingResult.totalItems);
+                         XCTAssertTrue(pagingResult.totalItems <= numberOfChildren, @"We expected that the total number of items should be less equal %d, but instead we got %d", numberOfChildren, pagingResult.totalItems);
                          
-                         STAssertTrue(pagingResult.objects.count == 1 , @"We are asking for %d maxItems but got back %d", maxItems, pagingResult.objects.count);
+                         XCTAssertTrue(pagingResult.objects.count == 1 , @"We are asking for %d maxItems but got back %d", maxItems, pagingResult.objects.count);
                          
                          if (numberOfChildren > maxItems)
                          {
-                             STAssertTrue(pagingResult.hasMoreItems, @"Expected that there are more items left");
+                             XCTAssertTrue(pagingResult.hasMoreItems, @"Expected that there are more items left");
                          }
                          else
                          {
-                             STAssertFalse(pagingResult.hasMoreItems, @"the folder has exactly 1 item, so we would not expect to get more back");
+                             XCTAssertFalse(pagingResult.hasMoreItems, @"the folder has exactly 1 item, so we would not expect to get more back");
                          }
                          
                          self.lastTestSuccessful = YES;
@@ -1543,11 +1543,11 @@
         // get the children of the repository's root folder
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1572,15 +1572,15 @@
              }
              else
              {
-                 STAssertTrue(pagingResult.totalItems > 0, @"Expected folder children");
-                 STAssertTrue(pagingResult.objects.count > 0, @"Expected at least 1 folder children returned, but we got %d instead", pagingResult.objects.count);
+                 XCTAssertTrue(pagingResult.totalItems > 0, @"Expected folder children");
+                 XCTAssertTrue(pagingResult.objects.count > 0, @"Expected at least 1 folder children returned, but we got %d instead", pagingResult.objects.count);
                  if (pagingResult.totalItems > 50)
                  {
-                     STAssertTrue(pagingResult.hasMoreItems, @"Expected that there are more items left");
+                     XCTAssertTrue(pagingResult.hasMoreItems, @"Expected that there are more items left");
                  }
                  else
                  {
-                     STAssertFalse(pagingResult.hasMoreItems, @"We should not have more than 50 items in total, but instead we have %d",pagingResult.totalItems);
+                     XCTAssertFalse(pagingResult.hasMoreItems, @"We should not have more than 50 items in total, but instead we have %d",pagingResult.totalItems);
                  }
                  
                  self.lastTestSuccessful = YES;
@@ -1589,11 +1589,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1620,8 +1620,8 @@
              }
              else
              {
-                 STAssertNotNil(node, @"node should not be nil");
-                 STAssertTrue([node.name isEqualToString:@"Sites"], @"node name should be Sites and not %@", node.name);
+                 XCTAssertNotNil(node, @"node should not be nil");
+                 XCTAssertTrue([node.name isEqualToString:@"Sites"], @"node name should be Sites and not %@", node.name);
                  
                  self.lastTestSuccessful = YES;
              }
@@ -1629,11 +1629,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1654,12 +1654,12 @@
          {
              if (nil == node)
              {
-                 STAssertNotNil(error, @"error should not be nil");
+                 XCTAssertNotNil(error, @"error should not be nil");
                  self.lastTestSuccessful = YES;
              }
              else
              {
-                 STAssertNil(node, @"Expected empty node");
+                 XCTAssertNil(node, @"Expected empty node");
                  self.lastTestFailureMessage = [NSString stringWithFormat:@"%@ - %@", [error localizedDescription], [error localizedFailureReason]];
                  self.lastTestSuccessful = NO;
              }
@@ -1667,11 +1667,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1694,21 +1694,21 @@
              }
              else
              {
-                 STAssertTrue(array.count > 0, @"Expected more than 0 documents");
+                 XCTAssertTrue(array.count > 0, @"Expected more than 0 documents");
                  if (array.count > 0)
                  {
                      for (AlfrescoDocument *document in array) {
                          if([document.name isEqualToString:@"versioned-quote.txt"])
                          {
-                             STAssertNotNil(document.type, @"type should be filled");
-                             STAssertNotNil(document.contentMimeType, @"contentMimeType should be filled");
-                             STAssertNotNil(document.versionLabel, @"versionLabel should be filled");
-                             STAssertTrue(document.contentLength > 0, @"contentLength should be filled");
-                             STAssertTrue(document.isLatestVersion, @"isLatestVersion should be filled");
-                             STAssertTrue([document.contentMimeType isEqualToString:@"text/plain"], @"Expected text mimetype");
-                             STAssertNotNil(document.title, @"At least the document title should NOT be nil");
-                             STAssertFalse([document.title isEqualToString:@""], @"title should NOT be an empty string");
-                             STAssertFalse([document.title isEqualToString:@"(null)"], @"title should return string (null)");
+                             XCTAssertNotNil(document.type, @"type should be filled");
+                             XCTAssertNotNil(document.contentMimeType, @"contentMimeType should be filled");
+                             XCTAssertNotNil(document.versionLabel, @"versionLabel should be filled");
+                             XCTAssertTrue(document.contentLength > 0, @"contentLength should be filled");
+                             XCTAssertTrue(document.isLatestVersion, @"isLatestVersion should be filled");
+                             XCTAssertTrue([document.contentMimeType isEqualToString:@"text/plain"], @"Expected text mimetype");
+                             XCTAssertNotNil(document.title, @"At least the document title should NOT be nil");
+                             XCTAssertFalse([document.title isEqualToString:@""], @"title should NOT be an empty string");
+                             XCTAssertFalse([document.title isEqualToString:@"(null)"], @"title should return string (null)");
                              
                          }
                      }
@@ -1725,11 +1725,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1780,13 +1780,13 @@
                          AlfrescoDocument *serializedDoc = [myArray objectAtIndex:0];
                          AlfrescoProperty *serializedDocProperty = [doc.properties valueForKey:kCMISPropertyName];
                          
-                         STAssertEqualObjects(docName, serializedDoc.name, @"name should match");
-                         STAssertEqualObjects(docCreatedBy, serializedDoc.createdBy, @"createdBy should match");
-                         STAssertNotNil(serializedDoc.properties, @"properties should not be nil");
-                         STAssertEqualObjects(docProperty.value, serializedDocProperty.value, @"checking AlfrescoProperty Serialization. values should match");
-                         STAssertEquals(isDocDocument, serializedDoc.isDocument, @"isDocument should match");
-                         STAssertEqualObjects(docMimeType, serializedDoc.contentMimeType, @"docMimeType should match");
-                         STAssertEqualObjects(docVersion, serializedDoc.versionLabel, @"docVersion should match");
+                         XCTAssertEqualObjects(docName, serializedDoc.name, @"name should match");
+                         XCTAssertEqualObjects(docCreatedBy, serializedDoc.createdBy, @"createdBy should match");
+                         XCTAssertNotNil(serializedDoc.properties, @"properties should not be nil");
+                         XCTAssertEqualObjects(docProperty.value, serializedDocProperty.value, @"checking AlfrescoProperty Serialization. values should match");
+                         XCTAssertEquals(isDocDocument, serializedDoc.isDocument, @"isDocument should match");
+                         XCTAssertEqualObjects(docMimeType, serializedDoc.contentMimeType, @"docMimeType should match");
+                         XCTAssertEqualObjects(docVersion, serializedDoc.versionLabel, @"docVersion should match");
                      }
                      
                      documentService = nil;
@@ -1796,12 +1796,12 @@
              }];
             
             [self waitUntilCompleteWithFixedTimeInterval];
-            STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+            XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
         }
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1828,7 +1828,7 @@
             else
             {
                 __block int numberOfDocs = foundDocuments.count;
-                STAssertFalse(0 == numberOfDocs, @"We should have at least 1 document in the folder. Instead we got none");
+                XCTAssertFalse(0 == numberOfDocs, @"We should have at least 1 document in the folder. Instead we got none");
                 [self.dfService retrieveDocumentsInFolder:self.testDocFolder listingContext:paging completionBlock:^(AlfrescoPagingResult *pagingResult, NSError *error)
                  {
                      if (nil == pagingResult)
@@ -1838,7 +1838,7 @@
                      }
                      else
                      {
-                         STAssertTrue(pagingResult.totalItems == numberOfDocs, @"Expected more than %d documents in total, but got %d",maxItems, pagingResult.totalItems);
+                         XCTAssertTrue(pagingResult.totalItems == numberOfDocs, @"Expected more than %d documents in total, but got %d",maxItems, pagingResult.totalItems);
                          int maxToBeFound = numberOfDocs - skipCount;
                          if (maxToBeFound < 0)
                          {
@@ -1846,20 +1846,20 @@
                          }
                          if (maxItems <= maxToBeFound)
                          {
-                             STAssertTrue(pagingResult.objects.count == maxItems, @"Expected %d documents, but got %d", maxItems, pagingResult.objects.count);
+                             XCTAssertTrue(pagingResult.objects.count == maxItems, @"Expected %d documents, but got %d", maxItems, pagingResult.objects.count);
                              if (maxItems < maxToBeFound)
                              {
-                                 STAssertTrue(pagingResult.hasMoreItems, @"we should have more items than we got back");
+                                 XCTAssertTrue(pagingResult.hasMoreItems, @"we should have more items than we got back");
                              }
                              else
                              {
-                                 STAssertFalse(pagingResult.hasMoreItems, @"we should not have more than %d items", maxItems);
+                                 XCTAssertFalse(pagingResult.hasMoreItems, @"we should not have more than %d items", maxItems);
                              }
                          }
                          else
                          {
-                             STAssertTrue(pagingResult.objects.count == maxToBeFound, @"Expected %d documents, but got %d", maxToBeFound, pagingResult.objects.count);
-                             STAssertFalse(pagingResult.hasMoreItems, @"we should not have more than %d items", maxItems);
+                             XCTAssertTrue(pagingResult.objects.count == maxToBeFound, @"Expected %d documents, but got %d", maxToBeFound, pagingResult.objects.count);
+                             XCTAssertFalse(pagingResult.hasMoreItems, @"we should not have more than %d items", maxItems);
                          }
                          
                          
@@ -1874,11 +1874,11 @@
         
         // get the documents of the repository's root folder
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1903,8 +1903,8 @@
              }
              else
              {
-                 STAssertTrue(pagingResult.objects.count > 0, @"Expected more than 0 documents, but instead we got %d",pagingResult.objects.count);
-                 STAssertTrue(pagingResult.totalItems > 2, @"Expected more than 2 documents in total");
+                 XCTAssertTrue(pagingResult.objects.count > 0, @"Expected more than 0 documents, but instead we got %d",pagingResult.objects.count);
+                 XCTAssertTrue(pagingResult.totalItems > 2, @"Expected more than 2 documents in total");
                  
                  self.lastTestSuccessful = YES;
              }
@@ -1912,11 +1912,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -1940,22 +1940,22 @@
              }
              else
              {
-                 STAssertTrue(array.count > 0, @"Expected more than 0 folders");
+                 XCTAssertTrue(array.count > 0, @"Expected more than 0 folders");
                  if (array.count > 0)
                  {
                      for (AlfrescoFolder *folder in array) {
                          if([folder.name isEqualToString:@"Guest Home"])
                          {
-                             STAssertNotNil(folder.createdBy, @"createdBy should be filled");
-                             STAssertNotNil(folder.type, @"type should be filled");
-                             STAssertNotNil(folder.title, @"title should be filled");
-                             STAssertTrue(folder.isFolder, @"isFolder should be filled");
-                             STAssertFalse(folder.isDocument, @"isDocument should be filled");
-                             STAssertNotNil(folder.createdBy, @"createdBy should be filled");
-                             STAssertNotNil(folder.createdAt, @"creationDate should be filled");
-                             STAssertNotNil(folder.modifiedBy, @"modifiedBy should be filled");
-                             STAssertNotNil(folder.modifiedAt, @"modificationDate should be filled");
-                             STAssertTrue([folder.title isEqualToString:@"Guest Home"], @"Expected Guest Home as title");
+                             XCTAssertNotNil(folder.createdBy, @"createdBy should be filled");
+                             XCTAssertNotNil(folder.type, @"type should be filled");
+                             XCTAssertNotNil(folder.title, @"title should be filled");
+                             XCTAssertTrue(folder.isFolder, @"isFolder should be filled");
+                             XCTAssertFalse(folder.isDocument, @"isDocument should be filled");
+                             XCTAssertNotNil(folder.createdBy, @"createdBy should be filled");
+                             XCTAssertNotNil(folder.createdAt, @"creationDate should be filled");
+                             XCTAssertNotNil(folder.modifiedBy, @"modifiedBy should be filled");
+                             XCTAssertNotNil(folder.modifiedAt, @"modificationDate should be filled");
+                             XCTAssertTrue([folder.title isEqualToString:@"Guest Home"], @"Expected Guest Home as title");
                          }
                      }
                      self.lastTestSuccessful = YES;
@@ -1971,11 +1971,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2011,24 +2011,24 @@
                      }
                      else
                      {
-                         STAssertTrue(pagingResult.totalItems == numberOfFolders, @"Expected %d folders in total, but we have %d",numberOfFolders, pagingResult.totalItems);
+                         XCTAssertTrue(pagingResult.totalItems == numberOfFolders, @"Expected %d folders in total, but we have %d",numberOfFolders, pagingResult.totalItems);
                          
                          if (numberOfFolders > maxItems)
                          {
-                             STAssertTrue(pagingResult.objects.count == maxItems, @"Expected at least %d folders, but got back %d", maxItems, pagingResult.objects.count);
+                             XCTAssertTrue(pagingResult.objects.count == maxItems, @"Expected at least %d folders, but got back %d", maxItems, pagingResult.objects.count);
                              if (numberOfFolders == maxItems)
                              {
-                                 STAssertFalse(pagingResult.hasMoreItems, @"Expected no more folders available, but instead it says there are more items");
+                                 XCTAssertFalse(pagingResult.hasMoreItems, @"Expected no more folders available, but instead it says there are more items");
                              }
                              else
                              {
-                                 STAssertTrue(pagingResult.hasMoreItems, @"Expected more folders available, but instead it says there are no more items");
+                                 XCTAssertTrue(pagingResult.hasMoreItems, @"Expected more folders available, but instead it says there are no more items");
                              }
                          }
                          else
                          {
-                             STAssertTrue(pagingResult.objects.count == numberOfFolders, @"Expected at least %d folders, but got back %d", numberOfFolders, pagingResult.objects.count);
-                             STAssertFalse(pagingResult.hasMoreItems, @"Expected no more folders available, but instead it says there are more items");
+                             XCTAssertTrue(pagingResult.objects.count == numberOfFolders, @"Expected at least %d folders, but got back %d", numberOfFolders, pagingResult.objects.count);
+                             XCTAssertFalse(pagingResult.hasMoreItems, @"Expected no more folders available, but instead it says there are more items");
                          }
                          self.lastTestSuccessful = YES;
                      }
@@ -2041,11 +2041,11 @@
         
         // get the documents of the repository's root folder
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2068,20 +2068,20 @@
              }
              else
              {
-                 STAssertNotNil(node, @"node should not be nil");
-                 STAssertNotNil(node.identifier, @"nodeRef should not be nil");
-                 STAssertTrue([node.identifier isEqualToString:self.testDocFolder.identifier], @"nodeRef should be the same as root folder");
+                 XCTAssertNotNil(node, @"node should not be nil");
+                 XCTAssertNotNil(node.identifier, @"nodeRef should not be nil");
+                 XCTAssertTrue([node.identifier isEqualToString:self.testDocFolder.identifier], @"nodeRef should be the same as root folder");
                  
                  self.lastTestSuccessful = YES;
              }
              self.callbackCompleted = YES;
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2113,15 +2113,15 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  __block AlfrescoFolder *strongFolder = folder;
                  // check the properties were added at creation time
                  NSDictionary *newFolderProps = folder.properties;
                  AlfrescoProperty *newDescriptionProp = [newFolderProps objectForKey:@"cm:description"];
                  AlfrescoProperty *newTitleProp = [newFolderProps objectForKey:@"cm:title"];
-                 STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                 STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                 XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                 XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
                   {
@@ -2156,11 +2156,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2182,9 +2182,9 @@
             }
             else
             {
-                STAssertNotNil(node, @"node should not be nil");
-                STAssertNotNil(node.identifier, @"nodeRef should not be nil");
-                STAssertTrue([node.name isEqualToString:self.fixedFileName], @"name should be equal to %@",self.fixedFileName);
+                XCTAssertNotNil(node, @"node should not be nil");
+                XCTAssertNotNil(node.identifier, @"nodeRef should not be nil");
+                XCTAssertTrue([node.name isEqualToString:self.fixedFileName], @"name should be equal to %@",self.fixedFileName);
                 // REMOVED UNTIL BUG MOBSDK-462 IS RESOLVED
                 //                STAssertTrue(node.isFolder, @"Node should be a folder");
                 //                STAssertFalse(node.isDocument, @"Node should not be a document");
@@ -2195,11 +2195,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2231,8 +2231,8 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  __block NSString *folderPath = [self.testFolderPathName stringByAppendingPathComponent:folderName];
                  // check the properties were added at creation time
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
@@ -2268,11 +2268,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2294,9 +2294,9 @@
             }
             else
             {
-                STAssertNotNil(folder, @"node should not be nil");
-                STAssertNotNil(folder.identifier, @"nodeRef should not be nil");
-                STAssertTrue([folder.identifier isEqualToString:self.testDocFolder.identifier], @"nodeRef should be the same as root folder");
+                XCTAssertNotNil(folder, @"node should not be nil");
+                XCTAssertNotNil(folder.identifier, @"nodeRef should not be nil");
+                XCTAssertTrue([folder.identifier isEqualToString:self.testDocFolder.identifier], @"nodeRef should be the same as root folder");
                 
                 self.lastTestSuccessful = YES;
             }
@@ -2304,11 +2304,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2336,7 +2336,7 @@
              }
              else
              {
-                 STAssertTrue(array.count > 0, @"Expected more than 0 documents");
+                 XCTAssertTrue(array.count > 0, @"Expected more than 0 documents");
                  if (array.count > 0)
                  {
                      [weakDfService retrieveContentOfDocument:[array objectAtIndex:0] completionBlock:^(AlfrescoContentFile *contentFile, NSError *error)
@@ -2351,15 +2351,15 @@
                               self.lastTestSuccessful = YES;
                               // Assert File exists and check file length
                               NSString *filePath = [contentFile.fileUrl path];
-                              STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:filePath], @"File does not exist");
+                              XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:filePath], @"File does not exist");
                               NSError *error;
                               NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
-                              STAssertNil(error, @"Could not verify attributes of file %@: %@", filePath, [error description]);
-                              STAssertTrue([fileAttributes fileSize] > 100, @"Expected a file large than 100 bytes, but found one of %f kb", [fileAttributes fileSize]/1024.0);
+                              XCTAssertNil(error, @"Could not verify attributes of file %@: %@", filePath, [error description]);
+                              XCTAssertTrue([fileAttributes fileSize] > 100, @"Expected a file large than 100 bytes, but found one of %f kb", [fileAttributes fileSize]/1024.0);
                               
                               // Nice boys clean up after themselves
                               [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
-                              STAssertNil(error, @"Could not remove file %@: %@", filePath, [error description]);
+                              XCTAssertNil(error, @"Could not remove file %@: %@", filePath, [error description]);
                           }
                           
                           self.callbackCompleted = YES;
@@ -2379,11 +2379,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2419,17 +2419,17 @@
                                    }
                                    else
                                    {
-                                       STAssertNotNil(document.identifier, @"document identifier should be filled");
-                                       STAssertTrue(document.contentLength > 100, @"expected content to be filled");
+                                       XCTAssertNotNil(document.identifier, @"document identifier should be filled");
+                                       XCTAssertTrue(document.contentLength > 100, @"expected content to be filled");
                                        
                                        // check the properties were added at creation time
                                        NSDictionary *newDocProps = document.properties;
                                        AlfrescoProperty *newDescriptionProp = [newDocProps objectForKey:@"cm:description"];
                                        AlfrescoProperty *newTitleProp = [newDocProps objectForKey:@"cm:title"];
                                        AlfrescoProperty *newAuthorProp = [newDocProps objectForKey:@"cm:author"];
-                                       STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                                       STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
-                                       STAssertTrue([newAuthorProp.value isEqualToString:@"test author"], @"cm:author property value does not match");
+                                       XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                                       XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                                       XCTAssertTrue([newAuthorProp.value isEqualToString:@"test author"], @"cm:author property value does not match");
                                        
                                        
                                        __block AlfrescoDocument *strongDocument = document;
@@ -2465,11 +2465,11 @@
                                }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }
@@ -2506,24 +2506,24 @@
                                    }
                                    else
                                    {
-                                       STAssertNotNil(document.identifier, @"document identifier should be filled");
-                                       STAssertTrue(document.contentLength > 100, @"expected content to be filled");
+                                       XCTAssertNotNil(document.identifier, @"document identifier should be filled");
+                                       XCTAssertTrue(document.contentLength > 100, @"expected content to be filled");
                                        
                                        // check the properties were added at creation time
                                        NSDictionary *newDocProps = document.properties;
                                        AlfrescoProperty *newDescriptionProp = [newDocProps objectForKey:@"cm:description"];
                                        AlfrescoProperty *newTitleProp = [newDocProps objectForKey:@"cm:title"];
                                        AlfrescoProperty *newAuthorProp = [newDocProps objectForKey:@"cm:author"];
-                                       STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                                       STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
-                                       STAssertTrue([newAuthorProp.value isEqualToString:@"test author"], @"cm:author property value does not match");
+                                       XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                                       XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                                       XCTAssertTrue([newAuthorProp.value isEqualToString:@"test author"], @"cm:author property value does not match");
                                        
-                                       STAssertTrue(newDescriptionProp.type == AlfrescoPropertyTypeString, @"cm:description property should be of string type");
-                                       STAssertFalse(newDescriptionProp.isMultiValued, @"isMultiValued property should not be nil");
-                                       STAssertTrue(newTitleProp.type == AlfrescoPropertyTypeString, @"cm:title property should be of string type");
-                                       STAssertFalse(newTitleProp.isMultiValued, @"isMultiValued property should not be nil");
-                                       STAssertTrue(newAuthorProp.type == AlfrescoPropertyTypeString, @"cm:author property should be of string type");
-                                       STAssertFalse(newAuthorProp.isMultiValued, @"isMultiValued property should not be nil");
+                                       XCTAssertTrue(newDescriptionProp.type == AlfrescoPropertyTypeString, @"cm:description property should be of string type");
+                                       XCTAssertFalse(newDescriptionProp.isMultiValued, @"isMultiValued property should not be nil");
+                                       XCTAssertTrue(newTitleProp.type == AlfrescoPropertyTypeString, @"cm:title property should be of string type");
+                                       XCTAssertFalse(newTitleProp.isMultiValued, @"isMultiValued property should not be nil");
+                                       XCTAssertTrue(newAuthorProp.type == AlfrescoPropertyTypeString, @"cm:author property should be of string type");
+                                       XCTAssertFalse(newAuthorProp.isMultiValued, @"isMultiValued property should not be nil");
                                        
                                        // delete the test document
                                        [self.dfService deleteNode:document completionBlock:^(BOOL success, NSError *error)
@@ -2544,11 +2544,11 @@
                                }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }
@@ -2571,10 +2571,10 @@
             }
             else
             {
-                STAssertNotNil(contentFile,@"created content file should not be nil");
+                XCTAssertNotNil(contentFile,@"created content file should not be nil");
                 NSError *fileError = nil;
                 //                NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[contentFile.fileUrl path] error:&fileError];
-                STAssertNil(fileError, @"expected no error in getting file attributes for contentfile at path %@",[contentFile.fileUrl path]);
+                XCTAssertNil(fileError, @"expected no error in getting file attributes for contentfile at path %@",[contentFile.fileUrl path]);
                 //                unsigned long long size = [[fileAttributes valueForKey:NSFileSize] unsignedLongLongValue];
                 NSError *readError = nil;
                 __block NSString *stringContent = [NSString stringWithContentsOfFile:[contentFile.fileUrl path] encoding:NSUTF8StringEncoding error:&readError];
@@ -2608,13 +2608,13 @@
                          }
                          else
                          {
-                             STAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
-                             STAssertTrue(updatedDocument.contentLength > 100, @"expected content to be filled");
+                             XCTAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
+                             XCTAssertTrue(updatedDocument.contentLength > 100, @"expected content to be filled");
                              
                              float updatedVersionNumber = [updatedDocument.versionLabel floatValue];
                              
-                             STAssertTrue(previousVersionNumber < updatedVersionNumber, @"expected the updated AlfrescoDocument object to have a higher version number, but previous %f is not less than %f", previousVersionNumber, updatedVersionNumber);
-                             STAssertTrue([previousLastModificationDate compare:updatedDocument.modifiedAt] == NSOrderedAscending, @"expected the returing AlfrescoDocument object to have a newer last modification date");
+                             XCTAssertTrue(previousVersionNumber < updatedVersionNumber, @"expected the updated AlfrescoDocument object to have a higher version number, but previous %f is not less than %f", previousVersionNumber, updatedVersionNumber);
+                             XCTAssertTrue([previousLastModificationDate compare:updatedDocument.modifiedAt] == NSOrderedAscending, @"expected the returing AlfrescoDocument object to have a newer last modification date");
                              
                              [weakDfService retrieveContentOfDocument:updatedDocument completionBlock:^(AlfrescoContentFile *checkContentFile, NSError *error){
                                  if (nil == checkContentFile)
@@ -2626,9 +2626,9 @@
                                  {
                                      NSError *fileError = nil;
                                      NSDictionary *fileDict = [[NSFileManager defaultManager] attributesOfItemAtPath:[checkContentFile.fileUrl path] error:&fileError];
-                                     STAssertNil(fileError, @"expected no error with getting file attributes for content file at path %@",[checkContentFile.fileUrl path]);
+                                     XCTAssertNil(fileError, @"expected no error with getting file attributes for content file at path %@",[checkContentFile.fileUrl path]);
                                      unsigned long long size = [[fileDict valueForKey:NSFileSize] unsignedLongLongValue];
-                                     STAssertTrue(size > 0, @"checkContentFile length should be greater than 0. We got %llu",size);
+                                     XCTAssertTrue(size > 0, @"checkContentFile length should be greater than 0. We got %llu",size);
                                      NSError *checkError = nil;
                                      NSString *checkContentString = [NSString stringWithContentsOfFile:[checkContentFile.fileUrl path]
                                                                                               encoding:NSUTF8StringEncoding
@@ -2640,7 +2640,7 @@
                                      }
                                      else
                                      {
-                                         STAssertTrue([checkContentString isEqualToString:updatedContent],@"We should get back the updated content, instead we get %@",updatedContent);
+                                         XCTAssertTrue([checkContentString isEqualToString:updatedContent],@"We should get back the updated content, instead we get %@",updatedContent);
                                          self.lastTestSuccessful = YES;
                                      }
                                      
@@ -2660,11 +2660,11 @@
         
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }
@@ -2701,17 +2701,17 @@
                                    }
                                    else
                                    {
-                                       STAssertNotNil(document.identifier, @"document identifier should be filled");
-                                       STAssertTrue(document.contentLength > 100, @"expected content to be filled");
+                                       XCTAssertNotNil(document.identifier, @"document identifier should be filled");
+                                       XCTAssertTrue(document.contentLength > 100, @"expected content to be filled");
                                        
                                        // check the properties were added at creation time
                                        NSDictionary *newDocProps = document.properties;
                                        AlfrescoProperty *newDescriptionProp = [newDocProps objectForKey:@"cm:description"];
                                        AlfrescoProperty *newTitleProp = [newDocProps objectForKey:@"cm:title"];
                                        AlfrescoProperty *newAuthorProp = [newDocProps objectForKey:@"cm:author"];
-                                       STAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
-                                       STAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
-                                       STAssertTrue([newAuthorProp.value isEqualToString:@"test author"], @"cm:author property value does not match");
+                                       XCTAssertTrue([newDescriptionProp.value isEqualToString:@"test description"], @"cm:description property value does not match");
+                                       XCTAssertTrue([newTitleProp.value isEqualToString:@"test title"], @"cm:title property value does not match");
+                                       XCTAssertTrue([newAuthorProp.value isEqualToString:@"test author"], @"cm:author property value does not match");
                                        
                                        
                                        __block AlfrescoDocument *strongDocument = document;
@@ -2751,11 +2751,11 @@
                                }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }
@@ -2803,13 +2803,13 @@
                      }
                      else
                      {
-                         STAssertTrue([node isKindOfClass:[AlfrescoDocument class]], @"the node should be of type AlfrescoDocument");
+                         XCTAssertTrue([node isKindOfClass:[AlfrescoDocument class]], @"the node should be of type AlfrescoDocument");
                          AlfrescoDocument *updatedDoc = (AlfrescoDocument *)node;
-                         STAssertTrue([updatedDoc.name isEqualToString:updatedName], @"The name of the document should be %@, but instead we got %@", updatedName, updatedDoc.name);
+                         XCTAssertTrue([updatedDoc.name isEqualToString:updatedName], @"The name of the document should be %@, but instead we got %@", updatedName, updatedDoc.name);
                          AlfrescoProperty *description = [updatedDoc.properties objectForKey:@"cm:description"];
                          AlfrescoProperty *title = [updatedDoc.properties objectForKey:@"cm:title"];
-                         STAssertTrue([description.value isEqualToString:testDescription], @"expected description %@, but got %@", testDescription, description.value);
-                         STAssertTrue([title.value isEqualToString:testTitle], @"expected title %@, but got %@", testTitle, title.value);
+                         XCTAssertTrue([description.value isEqualToString:testDescription], @"expected description %@, but got %@", testDescription, description.value);
+                         XCTAssertTrue([title.value isEqualToString:testTitle], @"expected title %@, but got %@", testTitle, title.value);
                          [weakDfService deleteNode:node completionBlock:^(BOOL succeeded, NSError *deleteError){
                              if (!succeeded)
                              {
@@ -2832,11 +2832,11 @@
         
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }
@@ -2871,12 +2871,12 @@
                      }
                      else
                      {
-                         STAssertTrue([node isKindOfClass:[AlfrescoDocument class]], @"expected AlfrescoDocument");
+                         XCTAssertTrue([node isKindOfClass:[AlfrescoDocument class]], @"expected AlfrescoDocument");
                          AlfrescoDocument *doc = (AlfrescoDocument *)node;
                          NSString *description = doc.summary;
                          NSString *title = doc.title;
-                         STAssertNil(description, @"expected description to be NIL");
-                         STAssertNil(title, @"expected title to be NIL");
+                         XCTAssertNil(description, @"expected description to be NIL");
+                         XCTAssertNil(title, @"expected title to be NIL");
                          [self.dfService deleteNode:node completionBlock:^(BOOL succeeded, NSError *deleteError){
                              if (!succeeded)
                              {
@@ -2898,11 +2898,11 @@
         
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -2949,25 +2949,25 @@
                       else
                       {
                           AlfrescoDocument *updatedDocument = (AlfrescoDocument *)updatedNode;
-                          STAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
-                          STAssertTrue([updatedDocument.name isEqualToString:@"version-download-test-updated.txt"], @"name should be updated");
-                          STAssertTrue(updatedDocument.contentLength > 100, @"expected content to be filled");
-                          STAssertTrue([updatedDocument.type isEqualToString:@"cm:content"], @"type should be cm:content, but is %@", updatedDocument.type);
+                          XCTAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
+                          XCTAssertTrue([updatedDocument.name isEqualToString:@"version-download-test-updated.txt"], @"name should be updated");
+                          XCTAssertTrue(updatedDocument.contentLength > 100, @"expected content to be filled");
+                          XCTAssertTrue([updatedDocument.type isEqualToString:@"cm:content"], @"type should be cm:content, but is %@", updatedDocument.type);
                           
                           // check the updated properties
                           NSDictionary *updatedProps = updatedDocument.properties;
                           AlfrescoProperty *updatedDescription = [updatedProps objectForKey:@"cm:description"];
                           AlfrescoProperty *updatedTitle = [updatedProps objectForKey:@"cm:title"];
                           AlfrescoProperty *updatedAuthor = [updatedProps objectForKey:@"cm:author"];
-                          STAssertTrue([updatedDescription.value isEqualToString:@"updated description"], @"Updated description is incorrect");
-                          STAssertTrue([updatedTitle.value isEqualToString:@"updated title"], @"Updated title is incorrect");
-                          STAssertTrue([updatedAuthor.value isEqualToString:@"updated author"], @"Updated author is incorrect");
+                          XCTAssertTrue([updatedDescription.value isEqualToString:@"updated description"], @"Updated description is incorrect");
+                          XCTAssertTrue([updatedTitle.value isEqualToString:@"updated title"], @"Updated title is incorrect");
+                          XCTAssertTrue([updatedAuthor.value isEqualToString:@"updated author"], @"Updated author is incorrect");
                           
                           id propertyValue = [updatedDocument propertyValueWithName:kCMISPropertyName];
                           if ([propertyValue isKindOfClass:[NSString class]])
                           {
                               NSString *testValue = (NSString *)propertyValue;
-                              STAssertTrue([testValue isEqualToString:propertyObjectTestValue], @"Updated name is incorrect");
+                              XCTAssertTrue([testValue isEqualToString:propertyObjectTestValue], @"Updated name is incorrect");
                               self.lastTestSuccessful = YES;
                           }
                           else
@@ -2985,11 +2985,11 @@
          }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3025,8 +3025,8 @@
                                    }
                                    else
                                    {
-                                       STAssertNotNil(document.identifier, @"document identifier should be filled");
-                                       STAssertTrue(document.contentLength > 100, @"expected content to be filled");
+                                       XCTAssertNotNil(document.identifier, @"document identifier should be filled");
+                                       XCTAssertTrue(document.contentLength > 100, @"expected content to be filled");
                                        
                                        // check the properties were added at creation time
                                        __block NSString *propertyObjectTestValue = filename;
@@ -3071,11 +3071,11 @@
                                }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }
@@ -3105,8 +3105,8 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@", folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@", folderName);
                  
                  [self.dfService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
                   {
@@ -3125,11 +3125,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3161,8 +3161,8 @@
              }
              else
              {
-                 STAssertNotNil(unitTestFolder, @"folder should not be nil");
-                 STAssertTrue([unitTestFolder.name isEqualToString:folderName], @"folder name should be %@",folderName);
+                 XCTAssertNotNil(unitTestFolder, @"folder should not be nil");
+                 XCTAssertTrue([unitTestFolder.name isEqualToString:folderName], @"folder name should be %@",folderName);
                  NSString *subtestFolder = [AlfrescoBaseTest addTimeStampToFileOrFolderName:@"SomeTestFolder"];
                  [weakService createFolderWithName:subtestFolder inParentFolder:unitTestFolder properties:props completionBlock:^(AlfrescoFolder *internalFolder, NSError *internalError){
                      if (nil == internalFolder)
@@ -3193,11 +3193,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3229,8 +3229,8 @@
              }
              else
              {
-                 STAssertNotNil(folder, @"folder should not be nil");
-                 STAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@", folderName);
+                 XCTAssertNotNil(folder, @"folder should not be nil");
+                 XCTAssertTrue([folder.name isEqualToString:folderName], @"folder name should be %@", folderName);
                  __block AlfrescoFolder *strongFolder = folder;
                  [weakService deleteNode:folder completionBlock:^(BOOL success, NSError *error)
                   {
@@ -3262,11 +3262,11 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3295,8 +3295,8 @@
              }
              else
              {
-                 STAssertTrue(array.count > 0, @"Expected folder children but got %i", array.count);
-                 STAssertTrue([self nodeArray:array containsName:@"Unit Test Subfolder"], @"Folder children should contain 'Unit Test Subfolder'");
+                 XCTAssertTrue(array.count > 0, @"Expected folder children but got %i", array.count);
+                 XCTAssertTrue([self nodeArray:array containsName:@"Unit Test Subfolder"], @"Folder children should contain 'Unit Test Subfolder'");
                  AlfrescoDocument *testVersionedDoc = nil;
                  for (AlfrescoNode *node in array)
                  {
@@ -3323,9 +3323,9 @@
                          {
                              NSError *fileError = nil;
                              NSDictionary *fileDict = [[NSFileManager defaultManager] attributesOfItemAtPath:[contentFile.fileUrl path] error:&fileError];
-                             STAssertNil(fileError, @"expected no error in getting attributes for file at path %@",[contentFile.fileUrl path]);
+                             XCTAssertNil(fileError, @"expected no error in getting attributes for file at path %@",[contentFile.fileUrl path]);
                              unsigned long long size = [[fileDict valueForKey:NSFileSize] unsignedLongLongValue];
-                             STAssertTrue(size > 100, @"data should be filled and more than 100 bytes. Instead we get %llu",size);
+                             XCTAssertTrue(size > 100, @"data should be filled and more than 100 bytes. Instead we get %llu",size);
                              self.lastTestSuccessful = YES;
                          }
                          self.callbackCompleted = YES;
@@ -3342,7 +3342,7 @@
              
          }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
         
         /*
          AlfrescoDocument *document = [[AlfrescoDocument alloc] init];
@@ -3373,7 +3373,7 @@
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
  
@@ -3397,7 +3397,7 @@
              }
              else
              {
-                 STAssertNotNil(rootFolder,@"root folder should not be nil");
+                 XCTAssertNotNil(rootFolder,@"root folder should not be nil");
                  self.lastTestSuccessful = YES;
                  [self.dfService retrievePermissionsOfNode:rootFolder completionBlock:^(AlfrescoPermissions *permissions, NSError *error)
                   {
@@ -3408,7 +3408,7 @@
                       }
                       else
                       {
-                          STAssertNotNil(permissions,@"AlfrescoPermissions should not be nil");
+                          XCTAssertNotNil(permissions,@"AlfrescoPermissions should not be nil");
                           if(permissions.canAddChildren)
                           {
                               AlfrescoLogDebug(@"Can add children");
@@ -3452,11 +3452,11 @@
         
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3559,17 +3559,17 @@
                 }
                 else
                 {
-                    STAssertNotNil(node, @"document node should not be nil");
-                    STAssertTrue([node.name isEqualToString:documentName], @"Document name is not the same as requested. We expected %@, but got %@", documentName, node.name);
+                    XCTAssertNotNil(node, @"document node should not be nil");
+                    XCTAssertTrue([node.name isEqualToString:documentName], @"Document name is not the same as requested. We expected %@, but got %@", documentName, node.name);
                     
-                    STAssertNotNil(node.identifier, @"The identifier of the node should not be nil");
-                    STAssertNotNil(node.name, @"The name of the node should not be nil");
-                    STAssertNotNil(node.title, @"The title should not be nil");
-                    STAssertTrue(node.isDocument, @"The node retrieved should be a document");
-                    STAssertFalse(node.isFolder, @"The node retrieved should not be a folder");
-                    STAssertNotNil(node.properties, @"The node properties should not be nil");
-                    STAssertNotNil(node.aspects, @"The node aspects should not be nil");
-                    STAssertNotNil(node.createdAt, @"The creation date/time should not be nil");
+                    XCTAssertNotNil(node.identifier, @"The identifier of the node should not be nil");
+                    XCTAssertNotNil(node.name, @"The name of the node should not be nil");
+                    XCTAssertNotNil(node.title, @"The title should not be nil");
+                    XCTAssertTrue(node.isDocument, @"The node retrieved should be a document");
+                    XCTAssertFalse(node.isFolder, @"The node retrieved should not be a folder");
+                    XCTAssertNotNil(node.properties, @"The node properties should not be nil");
+                    XCTAssertNotNil(node.aspects, @"The node aspects should not be nil");
+                    XCTAssertNotNil(node.createdAt, @"The creation date/time should not be nil");
                     
                     // generate randomness
                     NSDate *dateTimeOriginal = [NSDate date];
@@ -3625,8 +3625,8 @@
                         }
                         else
                         {
-                            STAssertNotNil(modifiedNode, @"document node should not be nil");
-                            STAssertTrue([modifiedNode.name isEqualToString:documentName], @"Modified node name is not the same as requested. We expected %@ but got %@", documentName, modifiedNode.name);
+                            XCTAssertNotNil(modifiedNode, @"document node should not be nil");
+                            XCTAssertTrue([modifiedNode.name isEqualToString:documentName], @"Modified node name is not the same as requested. We expected %@ but got %@", documentName, modifiedNode.name);
                             
                             // check the properties were changed
                             NSDictionary *modifiedProperties = modifiedNode.properties;
@@ -3655,27 +3655,27 @@
                             NSInteger modifiedHour = [components hour];
                             NSInteger mofifiedMinute = [components minute];
                             NSInteger modifiedSecond = [components second];
-                            STAssertTrue(modifiedDay == day, @"Day was not the same after being modified");
-                            STAssertTrue(modifiedMonth == month, @"Month was not the same after being modified");
-                            STAssertTrue(modifiedYear == year, @"Year was not the same after being modified");
-                            STAssertTrue(modifiedHour == hour, @"hour should be the same but it is %d orig and %d modified", hour, modifiedHour);
-                            STAssertTrue(mofifiedMinute == minute, @"minute should be the same but it is %d orig and %d modified", minute, mofifiedMinute);
-                            STAssertTrue(modifiedSecond == second, @"second should be the same but it is %d orig and %d modified", second, modifiedSecond);
+                            XCTAssertTrue(modifiedDay == day, @"Day was not the same after being modified");
+                            XCTAssertTrue(modifiedMonth == month, @"Month was not the same after being modified");
+                            XCTAssertTrue(modifiedYear == year, @"Year was not the same after being modified");
+                            XCTAssertTrue(modifiedHour == hour, @"hour should be the same but it is %d orig and %d modified", hour, modifiedHour);
+                            XCTAssertTrue(mofifiedMinute == minute, @"minute should be the same but it is %d orig and %d modified", minute, mofifiedMinute);
+                            XCTAssertTrue(modifiedSecond == second, @"second should be the same but it is %d orig and %d modified", second, modifiedSecond);
                             
-                            STAssertTrue([modifiedImagePixelXDimension.value isEqualToNumber:imagePixelXDimension], @"Pixel X Dimension was not the same after being modified");
-                            STAssertTrue([modifiedImagePixelYDimension.value isEqualToNumber:imagePixelYDimension], @"Pixel Y Dimension was not the same after being modified");
-                            STAssertTrue([modifiedImageExposureTime.value isEqualToNumber:imageExposureTime], @"Exposure Time was not the same after being modified");
-                            STAssertTrue([modifiedImageFNumber.value isEqualToNumber:imageFNumber], @"F Number was not the same after being modified");
-                            STAssertTrue([modifiedImageFlash.value isEqualToNumber:imageFlash], @"Flash was not the same after being modified");
-                            STAssertTrue([modifiedImageFocalLength.value isEqualToNumber:imageFocalLength], @"Focal Length was not the same after being modified");
-                            STAssertTrue([modifiedImageISOSpeedRating.value isEqualToString:imageISOSpeedRating], @"ISO Speed Rating was not the same after being modified");
-                            STAssertTrue([modifiedImageManufacturer.value isEqualToString:imageManufacturer], @"Manufacturer was not the same after being modified");
-                            STAssertTrue([modifiedImageModel.value isEqualToString:imageModel], @"Model was not the same after being modified");
-                            STAssertTrue([modifiedImageSoftware.value isEqualToString:imageSoftware], @"Software was not the same after being modified");
-                            STAssertTrue([modifiedImageOrientation.value isEqualToNumber:imageOrientation], @"Orientation was not the same after being modified");
-                            STAssertTrue([modifiedImageXResolution.value isEqualToNumber:imageXResolution], @"XResolution was not the same after being modified");
-                            STAssertTrue([modifiedImageYResolution.value isEqualToNumber:imageYResolution], @"YResolution was not the same after being modified");
-                            STAssertTrue([modifiedImageResolutionUnit.value isEqualToString:imageResolutionUnit], @"Resolution Unit was not the same after being modified");
+                            XCTAssertTrue([modifiedImagePixelXDimension.value isEqualToNumber:imagePixelXDimension], @"Pixel X Dimension was not the same after being modified");
+                            XCTAssertTrue([modifiedImagePixelYDimension.value isEqualToNumber:imagePixelYDimension], @"Pixel Y Dimension was not the same after being modified");
+                            XCTAssertTrue([modifiedImageExposureTime.value isEqualToNumber:imageExposureTime], @"Exposure Time was not the same after being modified");
+                            XCTAssertTrue([modifiedImageFNumber.value isEqualToNumber:imageFNumber], @"F Number was not the same after being modified");
+                            XCTAssertTrue([modifiedImageFlash.value isEqualToNumber:imageFlash], @"Flash was not the same after being modified");
+                            XCTAssertTrue([modifiedImageFocalLength.value isEqualToNumber:imageFocalLength], @"Focal Length was not the same after being modified");
+                            XCTAssertTrue([modifiedImageISOSpeedRating.value isEqualToString:imageISOSpeedRating], @"ISO Speed Rating was not the same after being modified");
+                            XCTAssertTrue([modifiedImageManufacturer.value isEqualToString:imageManufacturer], @"Manufacturer was not the same after being modified");
+                            XCTAssertTrue([modifiedImageModel.value isEqualToString:imageModel], @"Model was not the same after being modified");
+                            XCTAssertTrue([modifiedImageSoftware.value isEqualToString:imageSoftware], @"Software was not the same after being modified");
+                            XCTAssertTrue([modifiedImageOrientation.value isEqualToNumber:imageOrientation], @"Orientation was not the same after being modified");
+                            XCTAssertTrue([modifiedImageXResolution.value isEqualToNumber:imageXResolution], @"XResolution was not the same after being modified");
+                            XCTAssertTrue([modifiedImageYResolution.value isEqualToNumber:imageYResolution], @"YResolution was not the same after being modified");
+                            XCTAssertTrue([modifiedImageResolutionUnit.value isEqualToString:imageResolutionUnit], @"Resolution Unit was not the same after being modified");
                             
                             self.lastTestSuccessful = YES;
                         }
@@ -3687,12 +3687,12 @@
             }];
             
             [self waitUntilCompleteWithFixedTimeInterval];
-            STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+            XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
         }
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3705,22 +3705,22 @@
         AlfrescoListingContext *listingContext = nil;
         
         listingContext = [[AlfrescoListingContext alloc] initWithMaxItems:10 skipCount:3];
-        STAssertTrue(listingContext.maxItems == 10, @"Expected maxItems to be 10");
-        STAssertTrue(listingContext.skipCount == 3, @"Expected the skip count to be 3");
+        XCTAssertTrue(listingContext.maxItems == 10, @"Expected maxItems to be 10");
+        XCTAssertTrue(listingContext.skipCount == 3, @"Expected the skip count to be 3");
         
         listingContext = [[AlfrescoListingContext alloc] initWithSortProperty:kAlfrescoSortByDescription sortAscending:NO];
-        STAssertTrue(listingContext.sortProperty == kAlfrescoSortByDescription, @"Expected the sort property to be set to sort by description at option");
-        STAssertFalse(listingContext.sortAscending, @"Expected the sort by ascending property to be set to no");
+        XCTAssertTrue(listingContext.sortProperty == kAlfrescoSortByDescription, @"Expected the sort property to be set to sort by description at option");
+        XCTAssertFalse(listingContext.sortAscending, @"Expected the sort by ascending property to be set to no");
         
         listingContext = [[AlfrescoListingContext alloc] initWithMaxItems:25 skipCount:2 sortProperty:kAlfrescoSortByCreatedAt sortAscending:YES];
-        STAssertTrue(listingContext.maxItems == 25, @"Expected maxItems to be 25");
-        STAssertTrue(listingContext.skipCount == 2, @"Expected the skip count to be 2");
-        STAssertTrue(listingContext.sortProperty == kAlfrescoSortByCreatedAt, @"Expected the sort property to be set to sort by created at option");
-        STAssertTrue(listingContext.sortAscending, @"Expected the sort by ascending property to be set to yes");
+        XCTAssertTrue(listingContext.maxItems == 25, @"Expected maxItems to be 25");
+        XCTAssertTrue(listingContext.skipCount == 2, @"Expected the skip count to be 2");
+        XCTAssertTrue(listingContext.sortProperty == kAlfrescoSortByCreatedAt, @"Expected the sort property to be set to sort by created at option");
+        XCTAssertTrue(listingContext.sortAscending, @"Expected the sort by ascending property to be set to yes");
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3751,15 +3751,15 @@
             }
             else
             {
-                STAssertNotNil(document, @"The created document is nil");
+                XCTAssertNotNil(document, @"The created document is nil");
                 NSArray *documentAspects = document.aspects;
                 
                 for (NSString *aspectName in documentAspects)
                 {
-                    STAssertFalse([aspectName hasPrefix:@"P:"], @"The aspect %@ has a prefix of P: which is not as expected", aspectName);
+                    XCTAssertFalse([aspectName hasPrefix:@"P:"], @"The aspect %@ has a prefix of P: which is not as expected", aspectName);
                 }
                 
-                STAssertTrue([document hasAspectWithName:@"cm:titled"], @"The document should have the title aspect associated to it");
+                XCTAssertTrue([document hasAspectWithName:@"cm:titled"], @"The document should have the title aspect associated to it");
                 
                 [weakDfService deleteNode:document completionBlock:^(BOOL success, NSError *error) {
                     
@@ -3781,11 +3781,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3812,7 +3812,7 @@
             }
             else
             {
-                STAssertNotNil(folder, @"The folder is nil");
+                XCTAssertNotNil(folder, @"The folder is nil");
                 
                 [weakService retrievePermissionsOfNode:folder completionBlock:^(AlfrescoPermissions *permissions, NSError *error) {
                     
@@ -3824,10 +3824,10 @@
                     }
                     else
                     {
-                        STAssertTrue(permissions.canAddChildren, @"Expected to be able to add children to folder");
-                        STAssertTrue(permissions.canComment, @"Expected to be able to comment on the folder");
-                        STAssertTrue(permissions.canDelete, @"Expected to be able to delete the folder");
-                        STAssertTrue(permissions.canEdit, @"Expected to be able to edit the folder");
+                        XCTAssertTrue(permissions.canAddChildren, @"Expected to be able to add children to folder");
+                        XCTAssertTrue(permissions.canComment, @"Expected to be able to comment on the folder");
+                        XCTAssertTrue(permissions.canDelete, @"Expected to be able to delete the folder");
+                        XCTAssertTrue(permissions.canEdit, @"Expected to be able to edit the folder");
                         
                         [weakService deleteNode:folder completionBlock:^(BOOL success, NSError *error) {
                             
@@ -3850,11 +3850,11 @@
             
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3881,8 +3881,8 @@
             }
             else
             {
-                STAssertNotNil(documentNode, @"Document node is nil");
-                STAssertTrue(documentNode.isDocument, @"Expected the node returned to be a document");
+                XCTAssertNotNil(documentNode, @"Document node is nil");
+                XCTAssertTrue(documentNode.isDocument, @"Expected the node returned to be a document");
                 
                 [weakService retrievePermissionsOfNode:documentNode completionBlock:^(AlfrescoPermissions *permissions, NSError *error) {
                     
@@ -3894,10 +3894,10 @@
                     }
                     else
                     {
-                        STAssertTrue(permissions.canAddChildren, @"Expected to be able to add children to folder");
-                        STAssertTrue(permissions.canComment, @"Expected to be able to comment on the folder");
-                        STAssertTrue(permissions.canDelete, @"Expected to be able to delete the folder");
-                        STAssertTrue(permissions.canEdit, @"Expected to be able to edit the folder");
+                        XCTAssertTrue(permissions.canAddChildren, @"Expected to be able to add children to folder");
+                        XCTAssertTrue(permissions.canComment, @"Expected to be able to comment on the folder");
+                        XCTAssertTrue(permissions.canDelete, @"Expected to be able to delete the folder");
+                        XCTAssertTrue(permissions.canEdit, @"Expected to be able to edit the folder");
                         
                         self.lastTestSuccessful = YES;
                     }
@@ -3908,11 +3908,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -3937,8 +3937,8 @@
             }
             else
             {
-                STAssertNotNil(entireArray, @"Expetced array to not be nil");
-                STAssertTrue([entireArray count] >= 5, @"Expected the entire array to return more than or equal to 5 items, but instead got back %i", [entireArray count]);
+                XCTAssertNotNil(entireArray, @"Expetced array to not be nil");
+                XCTAssertTrue([entireArray count] >= 5, @"Expected the entire array to return more than or equal to 5 items, but instead got back %i", [entireArray count]);
                 
                 AlfrescoListingContext *listingContext = [[AlfrescoListingContext alloc] initWithMaxItems:3 skipCount:2];
                 
@@ -3951,8 +3951,8 @@
                     }
                     else
                     {
-                        STAssertNotNil(pagingResult.objects, @"Expecting the objects array not to be nil");
-                        STAssertTrue([pagingResult.objects count] == 3, @"Expected the results of the objects array to contain 3 items, instead got back %i", [pagingResult.objects count]);
+                        XCTAssertNotNil(pagingResult.objects, @"Expecting the objects array not to be nil");
+                        XCTAssertTrue([pagingResult.objects count] == 3, @"Expected the results of the objects array to contain 3 items, instead got back %i", [pagingResult.objects count]);
                         
                         int matchedNodes = 0;
                         
@@ -3969,7 +3969,7 @@
                             }
                         }
                         
-                        STAssertTrue(matchedNodes == pagingResult.objects.count, @"We expected to match the number of paged nodes with the original list. Expected %d but got %d", pagingResult.objects.count, matchedNodes);
+                        XCTAssertTrue(matchedNodes == pagingResult.objects.count, @"We expected to match the number of paged nodes with the original list. Expected %d but got %d", pagingResult.objects.count, matchedNodes);
                         
                         self.lastTestSuccessful = YES;
                     }
@@ -3980,11 +3980,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4007,8 +4007,8 @@
             }
             else
             {
-                STAssertNil(parentFolder, @"Expected the parent folder of the root folder to be nil");
-                STAssertNotNil(error, @"Expected an error to be thrown");
+                XCTAssertNil(parentFolder, @"Expected the parent folder of the root folder to be nil");
+                XCTAssertNotNil(error, @"Expected an error to be thrown");
                 self.lastTestSuccessful = YES;
             }
             
@@ -4016,11 +4016,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4045,10 +4045,10 @@
             }
             else
             {
-                STAssertNotNil(contentFile,@"created content file should not be nil");
+                XCTAssertNotNil(contentFile,@"created content file should not be nil");
                 NSError *fileError = nil;
                 //                NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[contentFile.fileUrl path] error:&fileError];
-                STAssertNil(fileError, @"expected no error in getting file attributes for contentfile at path %@",[contentFile.fileUrl path]);
+                XCTAssertNil(fileError, @"expected no error in getting file attributes for contentfile at path %@",[contentFile.fileUrl path]);
                 //                unsigned long long size = [[fileAttributes valueForKey:NSFileSize] unsignedLongLongValue];
                 NSError *readError = nil;
                 
@@ -4075,8 +4075,8 @@
                         }
                         else
                         {
-                            STAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
-                            STAssertTrue(updatedDocument.contentLength > 100, @"expected content to be filled");
+                            XCTAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
+                            XCTAssertTrue(updatedDocument.contentLength > 100, @"expected content to be filled");
                             
                             [weakDfService retrieveContentOfDocument:updatedDocument completionBlock:^(AlfrescoContentFile *checkContentFile, NSError *error){
                                 if (checkContentFile == nil)
@@ -4088,9 +4088,9 @@
                                 {
                                     NSError *fileError = nil;
                                     NSDictionary *fileDict = [[NSFileManager defaultManager] attributesOfItemAtPath:[checkContentFile.fileUrl path] error:&fileError];
-                                    STAssertNil(fileError, @"expected no error with getting file attributes for content file at path %@",[checkContentFile.fileUrl path]);
+                                    XCTAssertNil(fileError, @"expected no error with getting file attributes for content file at path %@",[checkContentFile.fileUrl path]);
                                     unsigned long long size = [[fileDict valueForKey:NSFileSize] unsignedLongLongValue];
-                                    STAssertTrue(size > 0, @"checkContentFile length should be greater than 0. We got %llu",size);
+                                    XCTAssertTrue(size > 0, @"checkContentFile length should be greater than 0. We got %llu",size);
                                     NSError *checkError = nil;
                                     NSString *checkContentString = [NSString stringWithContentsOfFile:[checkContentFile.fileUrl path] encoding:NSUTF8StringEncoding error:&checkError];
                                     if (checkContentString == nil)
@@ -4100,7 +4100,7 @@
                                     }
                                     else
                                     {
-                                        STAssertTrue([checkContentString isEqualToString:updatedContent],@"We should get back the updated content %@, instead we get %@",updatedContent, checkContentString);
+                                        XCTAssertTrue([checkContentString isEqualToString:updatedContent],@"We should get back the updated content %@, instead we get %@",updatedContent, checkContentString);
                                         self.lastTestSuccessful = YES;
                                     }
                                     
@@ -4119,11 +4119,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 
 }
@@ -4165,17 +4165,17 @@
             }
             else
             {
-                STAssertNotNil(folder, @"Expected the folder not to be nil");
-                STAssertNotNil(folder.properties, @"The folders properties are nil");
+                XCTAssertNotNil(folder, @"Expected the folder not to be nil");
+                XCTAssertNotNil(folder.properties, @"The folders properties are nil");
                 
                 NSDictionary *folderProperties = folder.properties;
                 AlfrescoProperty *originalDescription = [folderProperties objectForKey:@"cm:description"];
                 AlfrescoProperty *originalTitle = [folderProperties objectForKey:@"cm:title"];
                 AlfrescoProperty *originalName = [folderProperties objectForKey:@"cmis:name"];
                 
-                STAssertNotNil(originalDescription, @"Expected the original description not to be nil");
-                STAssertNotNil(originalTitle, @"Expected the original title not to be nil");
-                STAssertNotNil(originalName, @"Expected the original name not to be nil");
+                XCTAssertNotNil(originalDescription, @"Expected the original description not to be nil");
+                XCTAssertNotNil(originalTitle, @"Expected the original title not to be nil");
+                XCTAssertNotNil(originalName, @"Expected the original name not to be nil");
                 
                 NSMutableDictionary *newFolderProperties = [NSMutableDictionary dictionary];
                 [newFolderProperties setObject:updatedDescriptionString forKey:@"cm:description"];
@@ -4191,21 +4191,21 @@
                     }
                     else
                     {
-                        STAssertNotNil(node, @"Expected the returned node not to be nil");
-                        STAssertNotNil(node.properties, @"Expected the returned nodes property not to be nil");
+                        XCTAssertNotNil(node, @"Expected the returned node not to be nil");
+                        XCTAssertNotNil(node.properties, @"Expected the returned nodes property not to be nil");
                         
                         NSDictionary *nodeProperties = node.properties;
                         AlfrescoProperty *modifiedDescription = [nodeProperties objectForKey:@"cm:description"];
                         AlfrescoProperty *modifiedTitle = [nodeProperties objectForKey:@"cm:title"];
                         AlfrescoProperty *modifiedName = [nodeProperties objectForKey:@"cmis:name"];
                         
-                        STAssertNotNil(modifiedDescription, @"Expected the modified description not to be nil");
-                        STAssertNotNil(modifiedTitle, @"Expected the modified title not to be nil");
-                        STAssertNotNil(modifiedName, @"Expected the modified name not to be nil");
+                        XCTAssertNotNil(modifiedDescription, @"Expected the modified description not to be nil");
+                        XCTAssertNotNil(modifiedTitle, @"Expected the modified title not to be nil");
+                        XCTAssertNotNil(modifiedName, @"Expected the modified name not to be nil");
                         
-                        STAssertTrue([modifiedDescription.value isEqualToString:updatedDescriptionString], @"Modified description was expected to be %@", updatedDescriptionString);
-                        STAssertTrue([modifiedTitle.value isEqualToString:updatedTitleString], @"Modified title was expected to be %@", updatedTitleString);
-                        STAssertTrue([modifiedName.value isEqualToString:updatedNameString], @"Modified name was expected to be %@", updatedNameString);
+                        XCTAssertTrue([modifiedDescription.value isEqualToString:updatedDescriptionString], @"Modified description was expected to be %@", updatedDescriptionString);
+                        XCTAssertTrue([modifiedTitle.value isEqualToString:updatedTitleString], @"Modified title was expected to be %@", updatedTitleString);
+                        XCTAssertTrue([modifiedName.value isEqualToString:updatedNameString], @"Modified name was expected to be %@", updatedNameString);
                         
                         self.lastTestSuccessful = YES;
                     }
@@ -4228,11 +4228,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4255,11 +4255,11 @@
             self.callbackCompleted = YES;
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4314,7 +4314,7 @@
             }
             else
             {
-                STAssertNotNil(error, @"Error should occur whilst trying to get a rendition of a folder using doclib");
+                XCTAssertNotNil(error, @"Error should occur whilst trying to get a rendition of a folder using doclib");
                 
                 self.lastTestSuccessful = YES;
             }
@@ -4323,11 +4323,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4527,7 +4527,7 @@
             }
             else
             {
-                STAssertNil(error, @"Error occured trying to create document the first time");
+                XCTAssertNil(error, @"Error occured trying to create document the first time");
                 
                 NSMutableDictionary *props = [NSMutableDictionary dictionary];
                 [props setObject:duplicateFileName forKey:@"cmis:name"];
@@ -4541,12 +4541,12 @@
                     }
                     else
                     {
-                        STAssertNotNil(duplicateError, @"Trying to create another file with the same name should produce an error");
+                        XCTAssertNotNil(duplicateError, @"Trying to create another file with the same name should produce an error");
                         
                         // delete the orginal we created - cleanup
                         [weakFolderService deleteNode:document completionBlock:^(BOOL succeeded, NSError *deleteError) {
                             
-                            STAssertNil(deleteError, @"Error occured trying to delete the folder node");
+                            XCTAssertNil(deleteError, @"Error occured trying to delete the folder node");
                             
                             self.lastTestSuccessful = succeeded;
                             
@@ -4563,11 +4563,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4590,7 +4590,7 @@
             }
             else
             {
-                STAssertNotNil(error, @"Error should have occurred trying to access an invalid file path");
+                XCTAssertNotNil(error, @"Error should have occurred trying to access an invalid file path");
                 
                 self.lastTestSuccessful = YES;
             }
@@ -4599,11 +4599,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4653,8 +4653,8 @@
             }
             else
             {
-                STAssertNil(folder, @"Folder should be nil as it should not have been created successfully due to invalid properties");
-                STAssertNotNil(error, @"Error should have occured trying to set the created date");
+                XCTAssertNil(folder, @"Folder should be nil as it should not have been created successfully due to invalid properties");
+                XCTAssertNotNil(error, @"Error should have occured trying to set the created date");
                 
                 self.lastTestSuccessful = YES;
                 self.callbackCompleted = YES;
@@ -4663,11 +4663,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4715,8 +4715,8 @@
             }
             else
             {
-                STAssertNil(document, @"Document should be nil as it should not have been created successfully due to invalid properties");
-                STAssertNotNil(error, @"Error should have occured trying to set the created date");
+                XCTAssertNil(document, @"Document should be nil as it should not have been created successfully due to invalid properties");
+                XCTAssertNotNil(error, @"Error should have occured trying to set the created date");
                 
                 self.lastTestSuccessful = YES;
                 self.callbackCompleted = YES;
@@ -4727,11 +4727,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4755,9 +4755,9 @@
             }
             else
             {
-                STAssertNil(error, @"The retrieval should not have caused an error");
-                STAssertNotNil(pagingResult, @"Paging result should not be nil");
-                STAssertTrue([pagingResult.objects count] <= 5, @"The objects array should contain 5 or less result objects, but instead got back %i", [pagingResult.objects count]);
+                XCTAssertNil(error, @"The retrieval should not have caused an error");
+                XCTAssertNotNil(pagingResult, @"Paging result should not be nil");
+                XCTAssertTrue([pagingResult.objects count] <= 5, @"The objects array should contain 5 or less result objects, but instead got back %i", [pagingResult.objects count]);
                 
                 for (AlfrescoNode *node in pagingResult.objects)
                 {
@@ -4783,17 +4783,17 @@
                 }
                 
                 
-                STAssertTrue(isResultSortedInDescendingOrderByName, @"The returned array was not sorted in descending order by name");
+                XCTAssertTrue(isResultSortedInDescendingOrderByName, @"The returned array was not sorted in descending order by name");
                 
                 // check properties
                 [pagingResult.objects enumerateObjectsUsingBlock:^(id object, NSUInteger idx, BOOL *stop) {
                     AlfrescoDocument *document = (AlfrescoDocument *)object;
-                    STAssertNotNil(document.contentMimeType, @"Mime Type for the object with the name \"%@\" and identifier \"%@\" has no mime type", document.name, document.identifier);
-                    STAssertTrue(document.contentLength > 0, @"Content Length for the object with the name \"%@\" and identifier \"%@\" was less than or equal to 0", document.name, document.identifier);
-                    STAssertNotNil(document.versionLabel, @"Version Label for the object with the name \"%@\" and identifier \"%@\" was nil", document.name, document.identifier);
+                    XCTAssertNotNil(document.contentMimeType, @"Mime Type for the object with the name \"%@\" and identifier \"%@\" has no mime type", document.name, document.identifier);
+                    XCTAssertTrue(document.contentLength > 0, @"Content Length for the object with the name \"%@\" and identifier \"%@\" was less than or equal to 0", document.name, document.identifier);
+                    XCTAssertNotNil(document.versionLabel, @"Version Label for the object with the name \"%@\" and identifier \"%@\" was nil", document.name, document.identifier);
                     //                    Need clearification to the purpose of this property, currently returning nil for all documents
                     //                    STAssertNotNil(document.versionComment, @"Version Comment for the object with the name \"%@\" and identifier \"%@\" was nil", document.name, document.identifier);
-                    STAssertTrue(document.isLatestVersion, @"isLatestVersion for the object with the name \"%@\" and identifier \"%@\" should be true", document.name, document.identifier);
+                    XCTAssertTrue(document.isLatestVersion, @"isLatestVersion for the object with the name \"%@\" and identifier \"%@\" should be true", document.name, document.identifier);
                 }];
                 
                 self.lastTestSuccessful = YES;
@@ -4802,11 +4802,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4830,9 +4830,9 @@
             }
             else
             {
-                STAssertNil(error, @"The retrieval should not have caused an error");
-                STAssertNotNil(pagingResult, @"Paging result should not be nil");
-                STAssertTrue([pagingResult.objects count] <= 5, @"The objects array should contain 5 or less result objects, but instead got back %i", [pagingResult.objects count]);
+                XCTAssertNil(error, @"The retrieval should not have caused an error");
+                XCTAssertNotNil(pagingResult, @"Paging result should not be nil");
+                XCTAssertTrue([pagingResult.objects count] <= 5, @"The objects array should contain 5 or less result objects, but instead got back %i", [pagingResult.objects count]);
                 
                 // check if array is sorted correctly
                 NSArray *sortedArray = [pagingResult.objects sortedArrayUsingComparator:^(id a, id b) {
@@ -4845,7 +4845,7 @@
                 
                 BOOL isResultSortedInDescendingOrderByName = [pagingResult.objects isEqualToArray:sortedArray];
                 
-                STAssertTrue(isResultSortedInDescendingOrderByName, @"The returned array was not sorted in descending order by name");
+                XCTAssertTrue(isResultSortedInDescendingOrderByName, @"The returned array was not sorted in descending order by name");
                 
                 self.lastTestSuccessful = YES;
             }
@@ -4853,11 +4853,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4890,7 +4890,7 @@
             }
             else
             {
-                STAssertNotNil(folder, @"Folder should have successfully been created");
+                XCTAssertNotNil(folder, @"Folder should have successfully been created");
                 
                 NSString *subFolderName = [AlfrescoBaseTest addTimeStampToFileOrFolderName:@"SubFolder"];
                 NSString *subFolderDescription = @"Test Description";
@@ -4921,22 +4921,22 @@
                             }
                             else
                             {
-                                STAssertNotNil(childrenArray, @"The array returned should not be nil");
+                                XCTAssertNotNil(childrenArray, @"The array returned should not be nil");
                                 
-                                STAssertTrue([childrenArray count] == 1, @"Expected only one node to be returned");
+                                XCTAssertTrue([childrenArray count] == 1, @"Expected only one node to be returned");
                                 
                                 AlfrescoNode *subFolderNode = [childrenArray objectAtIndex:0];
-                                STAssertTrue(subFolderNode.isFolder, @"The node returned should be a folder");
-                                STAssertFalse(subFolderNode.isDocument, @"The node returned should not be a document");
-                                STAssertNotNil(subFolderNode.identifier, @"The node's identifier should not be nil");
-                                STAssertTrue([subFolderNode.name isEqualToString:subFolderName], @"The node's name should be %@, but instead is called %@", subFolderName, subFolderNode.name);
-                                STAssertTrue([subFolderNode.summary isEqualToString:parentFolderDescription], @"The node's description should be %@, but instead got back %@", subFolderDescription, subFolderNode.summary);
-                                STAssertTrue([subFolderNode.title isEqualToString:parentFolderTitle], @"The node's title should be %@, but instead got back %@", subFolderTitle, subFolderNode.title);
-                                STAssertNotNil(subFolderNode.type , @"Type should be filled");
-                                STAssertNotNil(subFolderNode.createdBy, @"CreatedBy should not be a nil value");
-                                STAssertTrue([subFolderNode.createdAt isEqualToDate:actualCreation], @"The creation dates of the folders do not match");
-                                STAssertNotNil(subFolderNode.properties, @"The properties of the subfolder should not be nil");
-                                STAssertNotNil(subFolderNode.aspects, @"The aspects of the subfolder should not be nil");
+                                XCTAssertTrue(subFolderNode.isFolder, @"The node returned should be a folder");
+                                XCTAssertFalse(subFolderNode.isDocument, @"The node returned should not be a document");
+                                XCTAssertNotNil(subFolderNode.identifier, @"The node's identifier should not be nil");
+                                XCTAssertTrue([subFolderNode.name isEqualToString:subFolderName], @"The node's name should be %@, but instead is called %@", subFolderName, subFolderNode.name);
+                                XCTAssertTrue([subFolderNode.summary isEqualToString:parentFolderDescription], @"The node's description should be %@, but instead got back %@", subFolderDescription, subFolderNode.summary);
+                                XCTAssertTrue([subFolderNode.title isEqualToString:parentFolderTitle], @"The node's title should be %@, but instead got back %@", subFolderTitle, subFolderNode.title);
+                                XCTAssertNotNil(subFolderNode.type , @"Type should be filled");
+                                XCTAssertNotNil(subFolderNode.createdBy, @"CreatedBy should not be a nil value");
+                                XCTAssertTrue([subFolderNode.createdAt isEqualToDate:actualCreation], @"The creation dates of the folders do not match");
+                                XCTAssertNotNil(subFolderNode.properties, @"The properties of the subfolder should not be nil");
+                                XCTAssertNotNil(subFolderNode.aspects, @"The aspects of the subfolder should not be nil");
                             }
                             
                             [weakFolderService deleteNode:folder completionBlock:^(BOOL succeeded, NSError *error) {
@@ -4954,11 +4954,11 @@
             }
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -4990,7 +4990,7 @@
             }
             else
             {
-                STAssertNotNil(folder, @"Folder should have successfully been created");
+                XCTAssertNotNil(folder, @"Folder should have successfully been created");
                 
                 NSString *documentName = @"Testing.jpg";
                 NSString *documentDescription = @"Test Description";
@@ -5024,22 +5024,22 @@
                             }
                             else
                             {
-                                STAssertNotNil(childrenArray, @"The array returned should not be nil");
+                                XCTAssertNotNil(childrenArray, @"The array returned should not be nil");
                                 
-                                STAssertTrue([childrenArray count] == 1, @"Expected only one node to be returned");
+                                XCTAssertTrue([childrenArray count] == 1, @"Expected only one node to be returned");
                                 
                                 AlfrescoNode *document = [childrenArray objectAtIndex:0];
-                                STAssertFalse(document.isFolder, @"The node returned should not be a folder");
-                                STAssertTrue(document.isDocument, @"The node returned should be a document");
-                                STAssertNotNil(document.identifier, @"The node's identifier should not be nil");
-                                STAssertTrue([document.name isEqualToString:documentName], @"The node's name should be %@, but instead is called %@", documentName, document.name);
-                                STAssertTrue([document.summary isEqualToString:documentDescription], @"The node's description should be %@, but instead got back %@", documentDescription, document.summary);
-                                STAssertTrue([document.title isEqualToString:parentFolderTitle], @"The node's title should be %@, but instead got back %@", documentTitle, document.title);
-                                STAssertNotNil(document.type , @"Type should be filled");
-                                STAssertNotNil(document.createdBy, @"CreatedBy should not be a nil value");
-                                STAssertTrue([document.createdAt isEqualToDate:actualCreation], @"The creation dates of the folders do not match");
-                                STAssertNotNil(document.properties, @"The properties of the subfolder should not be nil");
-                                STAssertNotNil(document.aspects, @"The aspects of the subfolder should not be nil");
+                                XCTAssertFalse(document.isFolder, @"The node returned should not be a folder");
+                                XCTAssertTrue(document.isDocument, @"The node returned should be a document");
+                                XCTAssertNotNil(document.identifier, @"The node's identifier should not be nil");
+                                XCTAssertTrue([document.name isEqualToString:documentName], @"The node's name should be %@, but instead is called %@", documentName, document.name);
+                                XCTAssertTrue([document.summary isEqualToString:documentDescription], @"The node's description should be %@, but instead got back %@", documentDescription, document.summary);
+                                XCTAssertTrue([document.title isEqualToString:parentFolderTitle], @"The node's title should be %@, but instead got back %@", documentTitle, document.title);
+                                XCTAssertNotNil(document.type , @"Type should be filled");
+                                XCTAssertNotNil(document.createdBy, @"CreatedBy should not be a nil value");
+                                XCTAssertTrue([document.createdAt isEqualToDate:actualCreation], @"The creation dates of the folders do not match");
+                                XCTAssertNotNil(document.properties, @"The properties of the subfolder should not be nil");
+                                XCTAssertNotNil(document.aspects, @"The aspects of the subfolder should not be nil");
                             }
                             
                             [weakFolderService deleteNode:folder completionBlock:^(BOOL succeeded, NSError *error) {
@@ -5059,11 +5059,11 @@
             }
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
     
 }
@@ -5117,17 +5117,17 @@
                     else
                     {
                         // check with created
-                        STAssertTrue([retrievedNode.identifier isEqualToString:createdIdentifier], @"Expected the identifier of the node to be %@, instead got back %@", createdIdentifier, retrievedNode.identifier);
-                        STAssertTrue([retrievedNode.name isEqualToString:createdName], @"Expected the name of the node to be %@, instead got back %@", createdName, retrievedNode.name);
-                        STAssertTrue([retrievedNode.title isEqualToString:createdTitle], @"Expected the title of the node to be %@, instead got back %@", createdTitle, retrievedNode.title);
-                        STAssertTrue([retrievedNode.summary isEqualToString:createdSummary], @"Expected the summary of the node to be %@, instead got back %@", createdSummary, retrievedNode.summary);
-                        STAssertTrue([retrievedNode.type isEqualToString:createdType], @"Expected the created of the node to be %@, instead got back %@", createdType, retrievedNode.type);
-                        STAssertTrue([retrievedNode.createdAt isEqualToDate:createdDate], @"Expected the created date of the node to be %@, instead got back %@", createdDate, retrievedNode.createdAt);
-                        STAssertTrue([retrievedNode.createdBy isEqualToString:createdBy], @"Expected the created by of the node to be %@, instead got back %@", createdBy, retrievedNode.createdBy);
-                        STAssertTrue([retrievedNode.properties count] == [createdProperties count], @"Expected the properties count of the node to be %lu, instead got back %lu", (unsigned long)[createdProperties count], (unsigned long)[retrievedNode.properties count]);
-                        STAssertTrue([retrievedNode.aspects isEqualToArray:createdAspects], @"Expected the aspects of the node to be %@, instead got back %@", createdAspects, retrievedNode.aspects);
-                        STAssertTrue(retrievedNode.isFolder, @"Expected the identifier of the node to be %i, instead got back %i", YES, retrievedNode.isFolder);
-                        STAssertFalse(retrievedNode.isDocument, @"Expected the identifier of the node to be %i, instead got back %i", NO, retrievedNode.isDocument);
+                        XCTAssertTrue([retrievedNode.identifier isEqualToString:createdIdentifier], @"Expected the identifier of the node to be %@, instead got back %@", createdIdentifier, retrievedNode.identifier);
+                        XCTAssertTrue([retrievedNode.name isEqualToString:createdName], @"Expected the name of the node to be %@, instead got back %@", createdName, retrievedNode.name);
+                        XCTAssertTrue([retrievedNode.title isEqualToString:createdTitle], @"Expected the title of the node to be %@, instead got back %@", createdTitle, retrievedNode.title);
+                        XCTAssertTrue([retrievedNode.summary isEqualToString:createdSummary], @"Expected the summary of the node to be %@, instead got back %@", createdSummary, retrievedNode.summary);
+                        XCTAssertTrue([retrievedNode.type isEqualToString:createdType], @"Expected the created of the node to be %@, instead got back %@", createdType, retrievedNode.type);
+                        XCTAssertTrue([retrievedNode.createdAt isEqualToDate:createdDate], @"Expected the created date of the node to be %@, instead got back %@", createdDate, retrievedNode.createdAt);
+                        XCTAssertTrue([retrievedNode.createdBy isEqualToString:createdBy], @"Expected the created by of the node to be %@, instead got back %@", createdBy, retrievedNode.createdBy);
+                        XCTAssertTrue([retrievedNode.properties count] == [createdProperties count], @"Expected the properties count of the node to be %lu, instead got back %lu", (unsigned long)[createdProperties count], (unsigned long)[retrievedNode.properties count]);
+                        XCTAssertTrue([retrievedNode.aspects isEqualToArray:createdAspects], @"Expected the aspects of the node to be %@, instead got back %@", createdAspects, retrievedNode.aspects);
+                        XCTAssertTrue(retrievedNode.isFolder, @"Expected the identifier of the node to be %i, instead got back %i", YES, retrievedNode.isFolder);
+                        XCTAssertFalse(retrievedNode.isDocument, @"Expected the identifier of the node to be %i, instead got back %i", NO, retrievedNode.isDocument);
                         
                         [weakFolderService deleteNode:folder completionBlock:^(BOOL succeeded, NSError *deleteError) {
                             
@@ -5144,11 +5144,11 @@
             
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -5175,11 +5175,11 @@
             }
             else
             {
-                STAssertNotNil(pagingResult, @"The paging result should not be nil");
+                XCTAssertNotNil(pagingResult, @"The paging result should not be nil");
                 
-                STAssertTrue([pagingResult.objects count] == maxItemsExpected, @"Expected the objects array to be of size %i, instead got back a size %i", maxItemsExpected, [pagingResult.objects count]);
-                STAssertTrue(pagingResult.hasMoreItems, @"Expected the paging result to have more items");
-                STAssertTrue(pagingResult.totalItems > maxItemsExpected, @"Expected the paging result to have more than %i items as the total number, but instead got back %i", maxItemsExpected, pagingResult.totalItems);
+                XCTAssertTrue([pagingResult.objects count] == maxItemsExpected, @"Expected the objects array to be of size %i, instead got back a size %i", maxItemsExpected, [pagingResult.objects count]);
+                XCTAssertTrue(pagingResult.hasMoreItems, @"Expected the paging result to have more items");
+                XCTAssertTrue(pagingResult.totalItems > maxItemsExpected, @"Expected the paging result to have more than %i items as the total number, but instead got back %i", maxItemsExpected, pagingResult.totalItems);
                 
                 // check if array is sorted correctly
                 NSArray *sortedArray = [pagingResult.objects sortedArrayUsingComparator:^(id a, id b) {
@@ -5192,18 +5192,18 @@
                 
                 BOOL isResultSortedInDescendingOrderByName = [pagingResult.objects isEqualToArray:sortedArray];
                 
-                STAssertTrue(isResultSortedInDescendingOrderByName, @"The returned array was not sorted in descending order by name");
+                XCTAssertTrue(isResultSortedInDescendingOrderByName, @"The returned array was not sorted in descending order by name");
                 
                 self.lastTestSuccessful = YES;
             }
             self.callbackCompleted = YES;
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -5229,10 +5229,10 @@
             }
             else
             {
-                STAssertNotNil(contentFile,@"created content file should not be nil");
+                XCTAssertNotNil(contentFile,@"created content file should not be nil");
                 NSError *fileError = nil;
                 //                NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[contentFile.fileUrl path] error:&fileError];
-                STAssertNil(fileError, @"expected no error in getting file attributes for contentfile at path %@",[contentFile.fileUrl path]);
+                XCTAssertNil(fileError, @"expected no error in getting file attributes for contentfile at path %@",[contentFile.fileUrl path]);
                 //                unsigned long long size = [[fileAttributes valueForKey:NSFileSize] unsignedLongLongValue];
                 NSError *readError = nil;
                 
@@ -5262,7 +5262,7 @@
                         }
                         else
                         {
-                            STAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
+                            XCTAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
                             
                             [weakDocumentService retrieveContentOfDocument:updatedDocument completionBlock:^(AlfrescoContentFile *checkContentFile, NSError *checkError){
                                 
@@ -5273,10 +5273,10 @@
                                 }
                                 else
                                 {
-                                    STAssertNotNil(checkContentFile, @"Should have returned a content file object");
+                                    XCTAssertNotNil(checkContentFile, @"Should have returned a content file object");
                                     // document content size should be the same as that of the updated content (empty document)
-                                    STAssertTrue(checkContentFile.length == updatedDocument.contentLength, @"Expected the length of the content file to be %llu, but instead got back %llu", updatedDocument.contentLength, checkContentFile.length);
-                                    STAssertTrue([checkContentFile.mimeType isEqualToString:@"text/plain"], @"Expected the mime type to be %@, but instead got back %@", @"text/plain", contentFile.mimeType);
+                                    XCTAssertTrue(checkContentFile.length == updatedDocument.contentLength, @"Expected the length of the content file to be %llu, but instead got back %llu", updatedDocument.contentLength, checkContentFile.length);
+                                    XCTAssertTrue([checkContentFile.mimeType isEqualToString:@"text/plain"], @"Expected the mime type to be %@, but instead got back %@", @"text/plain", contentFile.mimeType);
                                     
                                     self.lastTestSuccessful = YES;
                                 }
@@ -5296,11 +5296,11 @@
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+        XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -5337,10 +5337,10 @@
                 }
                 else
                 {
-                    STAssertNotNil(document.identifier, @"document identifier should be filled");
-                    STAssertTrue([document.type isEqualToString:@"fdk:everything"], @"Custom type is incorrect");
-                    STAssertTrue([document.name isEqualToString:customTypeTestFileName], @"document name is incorrect");
-                    STAssertTrue(document.contentLength > 10, @"expected content to be filled");
+                    XCTAssertNotNil(document.identifier, @"document identifier should be filled");
+                    XCTAssertTrue([document.type isEqualToString:@"fdk:everything"], @"Custom type is incorrect");
+                    XCTAssertTrue([document.name isEqualToString:customTypeTestFileName], @"document name is incorrect");
+                    XCTAssertTrue(document.contentLength > 10, @"expected content to be filled");
                     
                     // delete the test document
                     [self.dfService deleteNode:document completionBlock:^(BOOL success, NSError *error)
@@ -5360,13 +5360,13 @@
             } progressBlock:^(unsigned long long bytesTransferred, unsigned long long bytesTotal){}];
             
             [self waitUntilCompleteWithFixedTimeInterval];
-            STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+            XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
         }
         //        [AlfrescoLog sharedInstance].logLevel = AlfrescoLogLevelDebug;
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -5405,10 +5405,10 @@
                 }
                 else
                 {
-                    STAssertNotNil(document.identifier, @"document identifier should be filled");
-                    STAssertTrue([document.type isEqualToString:@"fdk:everything"], @"Custom type is incorrect");
-                    STAssertTrue([document.name isEqualToString:customTypeTestFileName], @"document name is incorrect");
-                    STAssertTrue(document.contentLength > 10, @"expected content to be filled");
+                    XCTAssertNotNil(document.identifier, @"document identifier should be filled");
+                    XCTAssertTrue([document.type isEqualToString:@"fdk:everything"], @"Custom type is incorrect");
+                    XCTAssertTrue([document.name isEqualToString:customTypeTestFileName], @"document name is incorrect");
+                    XCTAssertTrue(document.contentLength > 10, @"expected content to be filled");
                     
                     NSString *text = [NSString stringWithFormat:@"Text %i", arc4random()%10];
                     NSNumber *number = [NSNumber numberWithInt:arc4random()%512];
@@ -5427,15 +5427,15 @@
                         else
                         {
                             AlfrescoDocument *updatedDocument = (AlfrescoDocument *)updatedNode;
-                            STAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
-                            STAssertTrue([updatedDocument.type isEqualToString:@"fdk:everything"], @"Custom type is incorrect. Expected fdk:everything but got back %@", updatedDocument.type);
+                            XCTAssertNotNil(updatedDocument.identifier, @"document identifier should be filled");
+                            XCTAssertTrue([updatedDocument.type isEqualToString:@"fdk:everything"], @"Custom type is incorrect. Expected fdk:everything but got back %@", updatedDocument.type);
                             
                             // check the updated properties
                             NSDictionary *updatedProps = updatedDocument.properties;
                             AlfrescoProperty *updatedText = [updatedProps objectForKey:@"fdk:text"];
                             AlfrescoProperty *updatedNumber = [updatedProps objectForKey:@"fdk:int"];
-                            STAssertTrue([updatedText.value isEqualToString:text], @"Updated fdk:text property is incorrect");
-                            STAssertTrue([updatedNumber.value isEqualToNumber:number], @"Updated fdk:int property is incorrect");
+                            XCTAssertTrue([updatedText.value isEqualToString:text], @"Updated fdk:text property is incorrect");
+                            XCTAssertTrue([updatedNumber.value isEqualToNumber:number], @"Updated fdk:int property is incorrect");
                             
                             [self.dfService deleteNode:document completionBlock:^(BOOL success, NSError *deleteError)
                              {
@@ -5458,7 +5458,7 @@
             } progressBlock:^(unsigned long long bytesTransferred, unsigned long long bytesTotal){}];
             
             [self waitUntilCompleteWithFixedTimeInterval];
-            STAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
+            XCTAssertTrue(self.lastTestSuccessful, @"%@", self.lastTestFailureMessage);
             /*
              self.dfService = [[AlfrescoDocumentFolderService alloc] initWithSession:self.currentSession];
              __weak AlfrescoDocumentFolderService *weakDfService = self.dfService;
@@ -5519,7 +5519,7 @@
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 

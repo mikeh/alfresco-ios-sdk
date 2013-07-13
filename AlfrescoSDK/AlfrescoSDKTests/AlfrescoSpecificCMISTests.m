@@ -113,7 +113,7 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
         }
     }];
     [self waitUntilCompleteWithFixedTimeInterval];
-    STAssertTrue(self.lastTestSuccessful, @"setUpCMISSession failed");
+    XCTAssertTrue(self.lastTestSuccessful, @"setUpCMISSession failed");
     return success;
 }
 
@@ -157,7 +157,7 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
                     else
                     {
                         CMISDocument *doc = (CMISDocument *)object;
-                        STAssertTrue([doc.name isEqualToString:documentName], @"expected %@ but got %@", documentName, doc.name);
+                        XCTAssertTrue([doc.name isEqualToString:documentName], @"expected %@ but got %@", documentName, doc.name);
                         [self verifyDocument:doc hasExtensionProperty:@"cm:description" withValue:documentDescription];
                         [doc deleteAllVersionsWithCompletionBlock:^(BOOL documentDeleted, NSError *deleteError){
                             if (deleteError)
@@ -179,11 +179,11 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
         }];
         
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"testCreateDocumentWithDescription failed");        
+        XCTAssertTrue(self.lastTestSuccessful, @"testCreateDocumentWithDescription failed");        
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -322,11 +322,11 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
             }
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"testRetrieveExifDataUsingExtensions failed");
+        XCTAssertTrue(self.lastTestSuccessful, @"testRetrieveExifDataUsingExtensions failed");
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -346,22 +346,22 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
             {
                 CMISDocument *document = (CMISDocument *)cmisObject;
                 self.lastTestSuccessful = YES;
-                STAssertEqualObjects([document.properties propertyValueForId:@"exif:manufacturer"], @"NIKON", nil);
-                STAssertEqualObjects([document.properties propertyValueForId:@"exif:model"], @"E950", nil);
-                STAssertEqualObjects([document.properties propertyValueForId:@"exif:flash"], [NSNumber numberWithBool:NO], nil);
-                STAssertEqualObjects([document.properties propertyValueForId:@"exif:pixelXDimension"], [NSNumber numberWithInt:800], nil);
-                STAssertEqualObjects([document.properties propertyValueForId:@"exif:exposureTime"], [NSNumber numberWithDouble:0.012987012987013], nil);
+                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:manufacturer"], @"NIKON");
+                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:model"], @"E950");
+                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:flash"], [NSNumber numberWithBool:NO]);
+                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:pixelXDimension"], [NSNumber numberWithInt:800]);
+                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:exposureTime"], [NSNumber numberWithDouble:0.012987012987013]);
                 // Note: EXIF dates are considered to be in the local timezone, therefore the expected UTC-equivalent date is now specified in the test parameters
-                STAssertEqualObjects([document.properties propertyValueForId:@"exif:dateTimeOriginal"], [CMISDateUtil dateFromString:self.exifDateTimeOriginalUTC], nil);
+                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:dateTimeOriginal"], [CMISDateUtil dateFromString:self.exifDateTimeOriginalUTC], nil);
                 self.callbackCompleted = YES;
             }
         }];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"testRetrieveExifDataUsingProperties failed");
+        XCTAssertTrue(self.lastTestSuccessful, @"testRetrieveExifDataUsingProperties failed");
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -500,11 +500,11 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
             }
         } progressBlock:^(unsigned long long bytesUploaded, unsigned long long bytesTotal){}];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"testCreateDocumentWithExif failed");
+        XCTAssertTrue(self.lastTestSuccessful, @"testCreateDocumentWithExif failed");
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -539,7 +539,7 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
                     else
                     {
                         AlfrescoCMISDocument *cmisDocument = (AlfrescoCMISDocument *)cmisObject;
-                        STAssertFalse([cmisDocument hasAspect:@"P:exif:exif"], @"We should not be able to find P:exif:exif aspect - but we do");
+                        XCTAssertFalse([cmisDocument hasAspect:@"P:exif:exif"], @"We should not be able to find P:exif:exif aspect - but we do");
                         [cmisDocument.aspectTypes addObject:@"P:exif:exif"];
                         [cmisDocument updateProperties:[NSDictionary dictionary] completionBlock:^(CMISObject *updatedObj, NSError *updError){
                             if (nil == updatedObj)
@@ -551,7 +551,7 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
                             else
                             {
                                 AlfrescoCMISDocument *updatedDoc = (AlfrescoCMISDocument *)updatedObj;
-                                STAssertTrue([updatedDoc hasAspect:@"P:exif:exif"], @"We should be able to find P:exif:exif aspect - but we don't");
+                                XCTAssertTrue([updatedDoc hasAspect:@"P:exif:exif"], @"We should be able to find P:exif:exif aspect - but we don't");
                                 [updatedDoc deleteAllVersionsWithCompletionBlock:^(BOOL docDeleted, NSError *deleteError){
                                     if (deleteError)
                                     {
@@ -572,11 +572,11 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
             }
         } progressBlock:^(unsigned long long bytesUploaded, unsigned long long bytesTotal){}];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"testAddAspectToDocument failed");
+        XCTAssertTrue(self.lastTestSuccessful, @"testAddAspectToDocument failed");
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -623,8 +623,8 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
                             else
                             {
                                 AlfrescoCMISDocument *updatedDoc = (AlfrescoCMISDocument *)updObj;
-                                STAssertEqualObjects([updatedDoc.properties propertyValueForId:@"cm:description"], description, @"We expected the description on properties %@ to be equal to description %@, but got differences",[updatedDoc.properties propertyValueForId:@"cm:description"], description );
-                                STAssertEqualObjects([updatedDoc.properties propertyValueForId:@"cm:title"], description, nil);
+                                XCTAssertEqualObjects([updatedDoc.properties propertyValueForId:@"cm:description"], description, @"We expected the description on properties %@ to be equal to description %@, but got differences",[updatedDoc.properties propertyValueForId:@"cm:description"], description );
+                                XCTAssertEqualObjects([updatedDoc.properties propertyValueForId:@"cm:title"], description);
                                 [updatedDoc deleteAllVersionsWithCompletionBlock:^(BOOL deleted, NSError *deleteError){
                                     if (deleteError)
                                     {
@@ -645,11 +645,11 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
             }
         } progressBlock:^(unsigned long long bytesUploaded, unsigned long long bytesTotal){}];
         [self waitUntilCompleteWithFixedTimeInterval];
-        STAssertTrue(self.lastTestSuccessful, @"testApostropheInDescription failed");
+        XCTAssertTrue(self.lastTestSuccessful, @"testApostropheInDescription failed");
     }
     else
     {
-        STFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
+        XCTFail(@"Could not run test case: %@", NSStringFromSelector(_cmd));
     }
 }
 
@@ -706,12 +706,12 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
 - (void)verifyDocument:(CMISDocument *)document hasExtensionProperty:(NSString *)expectedProperty withValue:(id)expectedValue
 {
     // Let's do some extension juggling
-    STAssertNotNil(document.properties.extensions, @"Expected extensions");
-    STAssertTrue(document.properties.extensions.count > 0, @"Expected at least one property extension");
+    XCTAssertNotNil(document.properties.extensions, @"Expected extensions");
+    XCTAssertTrue(document.properties.extensions.count > 0, @"Expected at least one property extension");
 
     // Verify root extension element
     CMISExtensionElement *rootExtensionElement = (CMISExtensionElement *) [document.properties.extensions objectAtIndex:0];
-    STAssertTrue([rootExtensionElement.name isEqualToString:@"aspects"], @"root element of extensions should be 'aspects'");
+    XCTAssertTrue([rootExtensionElement.name isEqualToString:@"aspects"], @"root element of extensions should be 'aspects'");
 
     // Find properties extension element
     CMISExtensionElement *propertiesExtensionElement = nil;
@@ -723,7 +723,7 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
             break;
         }
     }
-    STAssertNotNil(propertiesExtensionElement, @"No properties extension element found");
+    XCTAssertNotNil(propertiesExtensionElement, @"No properties extension element found");
 
     // Find description property
     CMISExtensionElement *propertyElement = nil;
@@ -736,12 +736,12 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
             break;
         }
     }
-    STAssertNotNil(propertyElement, @"No property '%@' was found", expectedProperty);
+    XCTAssertNotNil(propertyElement, @"No property '%@' was found", expectedProperty);
 
     // Finally, verify the value
     CMISExtensionElement *valueElement = [propertyElement.children objectAtIndex:0];
-    STAssertNotNil(valueElement, @"There is no value element for the property");
-    STAssertTrue([valueElement.value isEqual:expectedValue],
+    XCTAssertNotNil(valueElement, @"There is no value element for the property");
+    XCTAssertTrue([valueElement.value isEqual:expectedValue],
         @"Document property '%@' value does not match: was %@ but expected %@", expectedProperty, valueElement.value, expectedValue);
 }
 
