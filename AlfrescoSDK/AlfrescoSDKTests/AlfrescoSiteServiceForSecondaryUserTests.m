@@ -170,7 +170,7 @@
                                         XCTAssertTrue(cancelledSite.isMember == isMember, @"the membership state of cancelled site should not have changed");
                                         XCTAssertTrue(cancelledSite.isFavorite == isFavorite, @"the favourite state of cancelled site should not have changed");
                                         XCTAssertTrue(isCorrectName, @"the site should be equal to %@, but instead we got %@", self.moderatedSiteName, modSite.identifier);
-                                        STAssertFalse(cancelledSite.isPendingMember, @"Site should NOT be in state isPendingMember - but appears to be still in this state");
+                                        XCTAssertFalse(cancelledSite.isPendingMember, @"Site should NOT be in state isPendingMember - but appears to be still in this state");
                                         self.lastTestSuccessful = YES;
                                         self.callbackCompleted = YES;
                                     }

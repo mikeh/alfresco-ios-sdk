@@ -352,7 +352,7 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
                 XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:pixelXDimension"], [NSNumber numberWithInt:800]);
                 XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:exposureTime"], [NSNumber numberWithDouble:0.012987012987013]);
                 // Note: EXIF dates are considered to be in the local timezone, therefore the expected UTC-equivalent date is now specified in the test parameters
-                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:dateTimeOriginal"], [CMISDateUtil dateFromString:self.exifDateTimeOriginalUTC], nil);
+                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:dateTimeOriginal"], [CMISDateUtil dateFromString:self.exifDateTimeOriginalUTC]);
                 self.callbackCompleted = YES;
             }
         }];
