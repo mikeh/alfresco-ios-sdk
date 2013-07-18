@@ -350,7 +350,9 @@ static NSString * const kAlfrescoTestNetworkID = @"/alfresco.com";
                 XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:model"], @"E950");
                 XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:flash"], [NSNumber numberWithBool:NO]);
                 XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:pixelXDimension"], [NSNumber numberWithInt:800]);
-                XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:exposureTime"], [NSNumber numberWithDouble:0.012987012987013]);
+                // It seems different EXIF metadata extractors vary in precision, so just check the first 16 digits of exposureTime
+                NSString *trimmedExposureTime = [[NSString stringWithFormat:@"%@", [document.properties propertyValueForId:@"exif:exposureTime"]] substringToIndex:16];
+                XCTAssertEqualObjects(trimmedExposureTime, @"0.01298701298701");
                 // Note: EXIF dates are considered to be in the local timezone, therefore the expected UTC-equivalent date is now specified in the test parameters
                 XCTAssertEqualObjects([document.properties propertyValueForId:@"exif:dateTimeOriginal"], [CMISDateUtil dateFromString:self.exifDateTimeOriginalUTC]);
                 self.callbackCompleted = YES;
