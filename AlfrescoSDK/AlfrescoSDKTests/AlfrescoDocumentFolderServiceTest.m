@@ -847,7 +847,7 @@
                  XCTAssertTrue(array.count > 0, @"Expected folder children but got %i", array.count);
                  if (self.isCloud)
                  {
-                     XCTAssertTrue([self nodeArray:array containsName:@"Sample Filesrr"], @"Folder children should contain Sample Filesrr");
+                     XCTAssertTrue([self nodeArray:array containsName:@"Sites"], @"Folder children should contain Sites");
                  }
                  else
                  {
@@ -2614,7 +2614,7 @@
                              float updatedVersionNumber = [updatedDocument.versionLabel floatValue];
                              
                              XCTAssertTrue(previousVersionNumber < updatedVersionNumber, @"expected the updated AlfrescoDocument object to have a higher version number, but previous %f is not less than %f", previousVersionNumber, updatedVersionNumber);
-                             XCTAssertTrue([previousLastModificationDate compare:updatedDocument.modifiedAt] == NSOrderedAscending, @"expected the returing AlfrescoDocument object to have a newer last modification date");
+                             XCTAssertTrue([previousLastModificationDate compare:updatedDocument.modifiedAt] == NSOrderedAscending, @"expected the returned AlfrescoDocument object to have a newer last modification date");
                              
                              [weakDfService retrieveContentOfDocument:updatedDocument completionBlock:^(AlfrescoContentFile *checkContentFile, NSError *error){
                                  if (nil == checkContentFile)
