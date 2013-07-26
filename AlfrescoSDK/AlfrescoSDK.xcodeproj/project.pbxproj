@@ -19,6 +19,8 @@
 		27786B88178DBC6E00E78A5D /* AlfrescoCMISPassThroughAuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 278B2695177BAF4D0049C229 /* AlfrescoCMISPassThroughAuthenticationProvider.m */; };
 		27B3C1C81798339D00D4439E /* CMISAllowableActionsParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B3C1281798339D00D4439E /* CMISAllowableActionsParser.h */; };
 		27B3C1C91798339D00D4439E /* CMISAllowableActionsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B3C1291798339D00D4439E /* CMISAllowableActionsParser.m */; };
+		27DDAC31179E7AB10048794B /* MikeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDAC30179E7AB10048794B /* MikeTest.m */; };
+		27DDAC31179E7AB10048794B /* MikeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DDAC30179E7AB10048794B /* MikeTest.m */; };
 		27B3C1CA1798339D00D4439E /* CMISAtomEntryParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B3C12A1798339D00D4439E /* CMISAtomEntryParser.h */; };
 		27B3C1CB1798339D00D4439E /* CMISAtomEntryParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B3C12B1798339D00D4439E /* CMISAtomEntryParser.m */; };
 		27B3C1CC1798339D00D4439E /* CMISAtomEntryWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B3C12C1798339D00D4439E /* CMISAtomEntryWriter.h */; };
@@ -374,6 +376,8 @@
 		278B2695177BAF4D0049C229 /* AlfrescoCMISPassThroughAuthenticationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlfrescoCMISPassThroughAuthenticationProvider.m; path = CMIS/AlfrescoCMIS/AlfrescoCMISPassThroughAuthenticationProvider.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		27B3C1281798339D00D4439E /* CMISAllowableActionsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMISAllowableActionsParser.h; sourceTree = "<group>"; };
 		27B3C1291798339D00D4439E /* CMISAllowableActionsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMISAllowableActionsParser.m; sourceTree = "<group>"; };
+		27DDAC2F179E7AB10048794B /* MikeTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MikeTest.h; sourceTree = "<group>"; };
+		27DDAC30179E7AB10048794B /* MikeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MikeTest.m; sourceTree = "<group>"; };
 		27B3C12A1798339D00D4439E /* CMISAtomEntryParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMISAtomEntryParser.h; sourceTree = "<group>"; };
 		27B3C12B1798339D00D4439E /* CMISAtomEntryParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMISAtomEntryParser.m; sourceTree = "<group>"; };
 		27B3C12C1798339D00D4439E /* CMISAtomEntryWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMISAtomEntryWriter.h; sourceTree = "<group>"; };
@@ -1173,6 +1177,8 @@
 				4EB0780015B00F5200DF7DED /* AlfrescoVersionServiceTest.h */,
 				4EB0780115B00F5200DF7DED /* AlfrescoVersionServiceTest.m */,
 				4EB076B115B00D8E00DF7DED /* Supporting Files */,
+				27DDAC2F179E7AB10048794B /* MikeTest.h */,
+				27DDAC30179E7AB10048794B /* MikeTest.m */,
 			);
 			path = AlfrescoSDKTests;
 			sourceTree = "<group>";
@@ -1799,6 +1805,7 @@
 				4EB0780615B00F5200DF7DED /* AlfrescoTaggingServiceTest.m in Sources */,
 				4EB0780715B00F5200DF7DED /* AlfrescoVersionServiceTest.m in Sources */,
 				730243B91628388C0028C378 /* AlfrescoSessionTest.m in Sources */,
+				27DDAC31179E7AB10048794B /* MikeTest.m in Sources */,
 				4E4B773D16637978005E1762 /* AlfrescoSpecificCMISTests.m in Sources */,
 				8218AF5916DFCC6D001CE051 /* AlfrescoLogTest.m in Sources */,
 				4E685AD3173BB64700BB7CCC /* AlfrescoSiteServiceForSecondaryUserTests.m in Sources */,
