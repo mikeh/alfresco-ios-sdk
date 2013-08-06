@@ -1785,7 +1785,7 @@
                          XCTAssertEqualObjects(docCreatedBy, serializedDoc.createdBy, @"createdBy should match");
                          XCTAssertNotNil(serializedDoc.properties, @"properties should not be nil");
                          XCTAssertEqualObjects(docProperty.value, serializedDocProperty.value, @"checking AlfrescoProperty Serialization. values should match");
-                         XCTAssertEquals(isDocDocument, serializedDoc.isDocument, @"isDocument should match");
+                         XCTAssertEqual(isDocDocument, serializedDoc.isDocument, @"isDocument should match");
                          XCTAssertEqualObjects(docMimeType, serializedDoc.contentMimeType, @"docMimeType should match");
                          XCTAssertEqualObjects(docVersion, serializedDoc.versionLabel, @"docVersion should match");
                      }
