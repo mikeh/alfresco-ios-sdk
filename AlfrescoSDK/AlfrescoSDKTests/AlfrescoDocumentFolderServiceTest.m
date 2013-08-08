@@ -5549,7 +5549,17 @@
                 // Should also get a cancellation error code
                 XCTAssertEqual(error.localizedDescription, kAlfrescoErrorDescriptionNetworkRequestCancelled, @"Expected cancellation error description, not \"%@\"", error.localizedDescription);
                 self.lastTestSuccessful = YES;
-                self.callbackCompleted = YES;
+                
+                // Try to clean-up as it's possible the folder will have got created anyway
+                [self.dfService retrieveNodeWithFolderPath:folderName relativeToFolder:self.testDocFolder completionBlock:^(AlfrescoNode *node, NSError *error) {
+                    if (nil != node)
+                    {
+                        // delete the folder to clean up
+                        [self.dfService deleteNode:node completionBlock:^(BOOL success, NSError *error) {
+                            self.callbackCompleted = YES;
+                        }];
+                    }
+                }];
             }
             else
             {
@@ -5586,18 +5596,28 @@
     {
         NSString *filePath = [[NSBundle bundleForClass:self.class] pathForResource:@"test_file.txt" ofType:nil];
         NSURL *fileUrl = [NSURL URLWithString:filePath];
-        NSString *newName = [AlfrescoBaseTest addTimeStampToFileOrFolderName:[fileUrl lastPathComponent]];
+        NSString *documentName = [AlfrescoBaseTest addTimeStampToFileOrFolderName:[fileUrl lastPathComponent]];
         NSData *fileData = [NSData dataWithContentsOfFile:filePath];
         AlfrescoContentFile *textContentFile = [[AlfrescoContentFile alloc] initWithData:fileData mimeType:@"text/plain"];
         
-        self.docFolderService = [[AlfrescoDocumentFolderService alloc] initWithSession:self.currentSession];
-        AlfrescoRequest *request = [self.docFolderService createDocumentWithName:newName inParentFolder:self.testDocFolder contentFile:textContentFile properties:nil completionBlock:^(AlfrescoDocument *document, NSError *error) {
+        self.dfService = [[AlfrescoDocumentFolderService alloc] initWithSession:self.currentSession];
+        AlfrescoRequest *request = [self.dfService createDocumentWithName:documentName inParentFolder:self.testDocFolder contentFile:textContentFile properties:nil completionBlock:^(AlfrescoDocument *document, NSError *error) {
             if (nil == document)
             {
                 // Should also get a cancellation error code
                 XCTAssertEqual(error.localizedDescription, kAlfrescoErrorDescriptionNetworkRequestCancelled, @"Expected cancellation error description, not \"%@\"", error.localizedDescription);
                 self.lastTestSuccessful = YES;
-                self.callbackCompleted = YES;
+
+                // Try to clean-up as it's possible the document will have got created anyway
+                [self.dfService retrieveNodeWithFolderPath:documentName relativeToFolder:self.testDocFolder completionBlock:^(AlfrescoNode *node, NSError *error) {
+                    if (nil != node)
+                    {
+                        // delete the document to clean up
+                        [self.dfService deleteNode:node completionBlock:^(BOOL success, NSError *error) {
+                            self.callbackCompleted = YES;
+                        }];
+                    }
+                }];
             }
             else
             {
