@@ -22,13 +22,14 @@
 #import "AlfrescoFolder.h"
 /** The AlfrescoKeywordSearchOptions are used in Alfresco Search Service.
  
- Author: Gavin Cornwell (Alfresco), Tijs Rademakers (Alfresco), Peter Schmidt (Alfresco)
+ Author: Gavin Cornwell (Alfresco), Tijs Rademakers (Alfresco), Mike Hatfield (Alfresco)
  */
 
 @interface AlfrescoKeywordSearchOptions : NSObject <NSCoding>
 @property (nonatomic, assign, readonly) BOOL exactMatch;
 @property (nonatomic, assign, readonly) BOOL includeContent;
 @property (nonatomic, assign, readonly) BOOL includeDescendants;
+@property (nonatomic, assign, readonly) BOOL includeALL;
 @property (nonatomic, strong, readonly) AlfrescoFolder *folder;
 
 /**
@@ -36,6 +37,12 @@
  @param includeContent - searches also the content of files
  */
 - (id)initWithExactMatch:(BOOL)exactMatch includeContent:(BOOL)includeContent;
+
+/**
+ @param exactMatch
+ @param includeALL - searches content and metadata (implies includeContent)
+ */
+- (id)initWithExactMatch:(BOOL)exactMatch includeALL:(BOOL)includeALL;
 
 /**
  @param folder - the node to be searched

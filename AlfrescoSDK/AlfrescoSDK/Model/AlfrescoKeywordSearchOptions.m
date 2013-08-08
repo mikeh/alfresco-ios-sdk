@@ -25,6 +25,7 @@ static NSUInteger kKeywordSearchModelVersion = 1;
 @property (nonatomic, assign, readwrite) BOOL exactMatch;
 @property (nonatomic, assign, readwrite) BOOL includeContent;
 @property (nonatomic, assign, readwrite) BOOL includeDescendants;
+@property (nonatomic, assign, readwrite) BOOL includeALL;
 @property (nonatomic, strong, readwrite) AlfrescoFolder *folder;
 @end
 
@@ -38,6 +39,16 @@ static NSUInteger kKeywordSearchModelVersion = 1;
 - (id)initWithExactMatch:(BOOL)exactMatch includeContent:(BOOL)includeContent
 {
     return [self initWithExactMatch:exactMatch includeContent:includeContent folder:nil includeDescendants:YES];
+}
+
+- (id)initWithExactMatch:(BOOL)exactMatch includeALL:(BOOL)includeALL
+{
+    self = [self initWithExactMatch:NO includeContent:NO folder:nil includeDescendants:YES];
+    if (self)
+    {
+        self.includeALL = includeALL;
+    }
+    return self;
 }
 
 - (id)initWithFolder:(AlfrescoFolder *)folder includeDescendants:(BOOL)includeDescendants
@@ -57,6 +68,7 @@ static NSUInteger kKeywordSearchModelVersion = 1;
         self.folder = folder;
         self.includeContent = includeContent;
         self.includeDescendants = includeDescendants;
+        self.includeALL = NO;
     }
     return self;
 }
