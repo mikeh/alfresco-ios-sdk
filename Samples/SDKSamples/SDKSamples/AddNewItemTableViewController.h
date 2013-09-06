@@ -39,6 +39,7 @@
 @property (nonatomic, strong) AlfrescoFolder *folder;
 @property (nonatomic, weak) IBOutlet UILabel *folderLabel;
 @property (nonatomic, weak) IBOutlet UILabel *photoLabel;
+@property (nonatomic, weak) IBOutlet UILabel *acquireScanLabel;
 @property (nonatomic, weak) IBOutlet UIProgressView *progressView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, weak) id<AddNewItemTableViewDelegate>addNewItemDelegate;

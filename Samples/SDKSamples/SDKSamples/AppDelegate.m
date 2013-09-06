@@ -17,12 +17,35 @@
  ******************************************************************************/
 
 #import "AppDelegate.h"
+#import "URLHandlerProtocol.h"
+#import "ScanSnapURLHandler.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    // Seems to be necessary (scansnap sdk bug?)
+    NSURL *inboundUrl = [url copy];
+    NSArray *urlHandlers = @[
+                             // Handler for inbound ScanSnap URLs
+                             [[ScanSnapURLHandler alloc] init]
+                             ];
+    
+    // Loop through handlers for the first one that claims to support the inbound url
+    for (id<URLHandlerProtocol>handler in urlHandlers)
+    {
+        if ([handler canHandleURL:inboundUrl])
+        {
+            return [handler handleURL:inboundUrl sourceApplication:sourceApplication annotation:annotation];
+        }
+    }
+    
+    return NO;
 }
 
 @end

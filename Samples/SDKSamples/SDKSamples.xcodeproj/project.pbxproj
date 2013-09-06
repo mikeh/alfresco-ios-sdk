@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27C5B1D517D9FA8C006CDB6E /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C5B1D417D9FA8C006CDB6E /* Constants.m */; };
+		27C5B1D817DA0BFC006CDB6E /* ScanSnapURLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C5B1D717DA0BFB006CDB6E /* ScanSnapURLHandler.m */; };
 		27E4D48917BBFE5500F5D773 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E4D48817BBFE5500F5D773 /* MediaPlayer.framework */; };
 		4E0C86751612FB65008B71DB /* ServerSelectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C86741612FB65008B71DB /* ServerSelectionTableViewController.m */; };
 		4E0C867816131E19008B71DB /* RepositoryLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C867716131E19008B71DB /* RepositoryLoginViewController.m */; };
@@ -83,6 +85,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27C5B1D317D9FA8C006CDB6E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		27C5B1D417D9FA8C006CDB6E /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		27C5B1D617DA0BFB006CDB6E /* ScanSnapURLHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanSnapURLHandler.h; sourceTree = "<group>"; };
+		27C5B1D717DA0BFB006CDB6E /* ScanSnapURLHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanSnapURLHandler.m; sourceTree = "<group>"; };
+		27C5B1D917DA0C58006CDB6E /* URLHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLHandlerProtocol.h; sourceTree = "<group>"; };
 		27E4D48817BBFE5500F5D773 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		4E0C86611612E2CB008B71DB /* AlfrescoOAuthData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlfrescoOAuthData.h; path = AlfrescoSDK/AlfrescoOAuthData.h; sourceTree = SOURCE_ROOT; };
 		4E0C86711612EE6F008B71DB /* AlfrescoOAuthLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlfrescoOAuthLoginViewController.h; path = AlfrescoSDK/AlfrescoOAuthLoginViewController.h; sourceTree = SOURCE_ROOT; };
@@ -407,6 +414,8 @@
 				D6C4B3081590C7A200880041 /* BaseViewController.m */,
 				D6A6989F156A5A170094686D /* BasicPreviewItem.h */,
 				D6A698A0156A5A170094686D /* BasicPreviewItem.m */,
+				27C5B1D317D9FA8C006CDB6E /* Constants.h */,
+				27C5B1D417D9FA8C006CDB6E /* Constants.m */,
 				8276E172155EF9CA00344A29 /* DocumentViewController.h */,
 				8276E173155EF9CA00344A29 /* DocumentViewController.m */,
 				8276E174155EF9CA00344A29 /* FolderViewController.h */,
@@ -419,6 +428,8 @@
 				4E0C867716131E19008B71DB /* RepositoryLoginViewController.m */,
 				8276E176155EF9CA00344A29 /* SamplesViewController.h */,
 				8276E177155EF9CA00344A29 /* SamplesViewController.m */,
+				27C5B1D617DA0BFB006CDB6E /* ScanSnapURLHandler.h */,
+				27C5B1D717DA0BFB006CDB6E /* ScanSnapURLHandler.m */,
 				D6A698B2156B83710094686D /* SearchResultViewController.h */,
 				D6A698B3156B83710094686D /* SearchResultViewController.m */,
 				D6A698AF156B7AE20094686D /* SearchViewController.h */,
@@ -427,6 +438,7 @@
 				4E0C86741612FB65008B71DB /* ServerSelectionTableViewController.m */,
 				8276E18F155EFAAB00344A29 /* SitesViewController.h */,
 				8276E190155EFAAB00344A29 /* SitesViewController.m */,
+				27C5B1D917DA0C58006CDB6E /* URLHandlerProtocol.h */,
 				8276E188155EFA8200344A29 /* Storyboards */,
 				829C563F155DB8F6004EE3C2 /* Supporting Files */,
 			);
@@ -573,6 +585,8 @@
 				82FF0F4A15DE6C06007A3828 /* AddPhotoTableViewController.m in Sources */,
 				4E0C86751612FB65008B71DB /* ServerSelectionTableViewController.m in Sources */,
 				4E0C867816131E19008B71DB /* RepositoryLoginViewController.m in Sources */,
+				27C5B1D517D9FA8C006CDB6E /* Constants.m in Sources */,
+				27C5B1D817DA0BFC006CDB6E /* ScanSnapURLHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

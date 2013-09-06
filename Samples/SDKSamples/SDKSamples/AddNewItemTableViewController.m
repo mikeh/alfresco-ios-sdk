@@ -24,7 +24,6 @@
 
 @interface AddNewItemTableViewController ()
 @property (nonatomic, strong) UIImage *selectedPhoto;
-@property BOOL isFolderTextInput;
 @property BOOL isIPad;
 @property (nonatomic, strong) UIPopoverController *iPadPopoverController;
 
@@ -81,13 +80,6 @@
     self.progressView.hidden = NO;
     [self.progressView setProgress:0.0];
     
-    NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithObject:name forKey:@"cm:title"];
-    if (description)
-    {
-        [properties setValue:description forKey:@"cm:description"];
-    }
-    
-    self.documentFolderService = [[AlfrescoDocumentFolderService alloc] initWithSession:self.session];
     AlfrescoContentFile *imageFile = nil;
     if ([[name lowercaseString] hasSuffix:@".jpg"]) 
     {
@@ -108,81 +100,89 @@
                      mimeType:@"image/jpeg"];
     }
     
-    [self.documentFolderService createDocumentWithName:name
-                                        inParentFolder:self.folder 
-                                           contentFile:imageFile
-                                            properties:properties
-                                       completionBlock:^(AlfrescoDocument *document, NSError *error){
-          if (nil == document) 
-          {                                               
-              self.progressView.hidden = YES;
-              UIAlertView *alert = [[UIAlertView alloc] 
-                                    initWithTitle:localized(@"error_title")
-                                    message:[NSString stringWithFormat:@"%@, %@", localized(@"error_uploading_document"), [error localizedDescription]]
-                                    delegate:nil 
-                                    cancelButtonTitle:localized(@"dialog_cancel")
-                                    otherButtonTitles: nil];
-              alert.alertViewStyle = UIAlertViewStyleDefault;
-              [alert show];    
-              self.photoLabel.text = localized(@"add_photo_option");
-          }
-          else 
-          {
-              if (tags.count > 0)
-              {
-                  // convert tag objects into strings
-                  NSMutableArray *tagStrings = [NSMutableArray arrayWithCapacity:tags.count];
-                  for (AlfrescoTag *tag in tags)
-                  {
-                      [tagStrings addObject:tag.value];
-                  }
-                  
-                  self.taggingService = [[AlfrescoTaggingService alloc] initWithSession:self.session];
-                  __weak typeof(self) weakSelf = self;
-                  [self.taggingService addTags:tagStrings toNode:document completionBlock:^(BOOL success, NSError *error){
-                      if (!success) 
-                      {
-                          weakSelf.progressView.hidden = YES;
-                          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:localized(@"error_title")
-                                                                          message:[NSString stringWithFormat:@"%@, %@",localized(@"error_adding_tags"), [error localizedDescription]] 
-                                                                         delegate:nil 
-                                                                cancelButtonTitle:localized(@"dialog_cancel")
-                                                                otherButtonTitles:nil];
-                          alert.alertViewStyle = UIAlertViewStyleDefault;
-                          [alert show];
-                      }
-                      else 
-                      {
-                          weakSelf.progressView.progress = 1.0;
-                          if ([weakSelf.addNewItemDelegate respondsToSelector:@selector(updateFolderContent)])
-                          {
-                              [weakSelf.addNewItemDelegate updateFolderContent];
-                          }
-                          weakSelf.progressView.hidden = YES;
-                          [weakSelf.navigationController popViewControllerAnimated:YES];
-                      }
-                       
-                  }];
-              }
-              else 
-              {
-                  self.progressView.progress = 1.0;
-                  if ([self.addNewItemDelegate respondsToSelector:@selector(updateFolderContent)])
-                  {
-                      [self.addNewItemDelegate updateFolderContent];
-                  }
-                  self.progressView.hidden = YES;
-                  [self.navigationController popViewControllerAnimated:YES];                                                   
-              }
-          }
-      } progressBlock:^(unsigned long long bytesTransferred, unsigned long long bytesTotal) {
-          self.progressView.progress = ((float)bytesTransferred/(float)bytesTotal) - 0.3;
-      }];
+    [self uploadContentFile:imageFile name:name description:description tags:tags];
+}
+
+/**
+ uploadFile: uses the AlfrescoDocumentFolderService to upload an AlfrescoContentFile
+ */
+- (void)uploadContentFile:(AlfrescoContentFile *)contentFile name:(NSString *)name description:(NSString *)description tags:(NSArray *)tags
+{
+    self.progressView.hidden = NO;
+    [self.progressView setProgress:0.0];
+    
+    NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithObject:name forKey:@"cm:title"];
+    if (description)
+    {
+        [properties setValue:description forKey:@"cm:description"];
+    }
+    
+    self.documentFolderService = [[AlfrescoDocumentFolderService alloc] initWithSession:self.session];
+    
+    [self.documentFolderService createDocumentWithName:name inParentFolder:self.folder contentFile:contentFile properties:properties completionBlock:^(AlfrescoDocument *document, NSError *error) {
+        if (nil == document)
+        {
+            self.progressView.hidden = YES;
+            [[[UIAlertView alloc] initWithTitle:localized(@"error_title")
+                                        message:[NSString stringWithFormat:@"%@, %@", localized(@"error_uploading_document"), [error localizedDescription]]
+                                       delegate:nil
+                              cancelButtonTitle:localized(@"dialog_cancel")
+                              otherButtonTitles:nil] show];
+        }
+        else
+        {
+            if (tags.count > 0)
+            {
+                // convert tag objects into strings
+                NSMutableArray *tagStrings = [NSMutableArray arrayWithCapacity:tags.count];
+                for (AlfrescoTag *tag in tags)
+                {
+                    [tagStrings addObject:tag.value];
+                }
+                
+                self.taggingService = [[AlfrescoTaggingService alloc] initWithSession:self.session];
+                __weak typeof(self) weakSelf = self;
+                [self.taggingService addTags:tagStrings toNode:document completionBlock:^(BOOL success, NSError *error){
+                    if (!success)
+                    {
+                        weakSelf.progressView.hidden = YES;
+                        [[[UIAlertView alloc] initWithTitle:localized(@"error_title")
+                                                    message:[NSString stringWithFormat:@"%@, %@", localized(@"error_adding_tags"), [error localizedDescription]]
+                                                   delegate:nil
+                                          cancelButtonTitle:localized(@"dialog_cancel")
+                                          otherButtonTitles:nil] show];
+                    }
+                    else
+                    {
+                        weakSelf.progressView.progress = 1.0;
+                        if ([weakSelf.addNewItemDelegate respondsToSelector:@selector(updateFolderContent)])
+                        {
+                            [weakSelf.addNewItemDelegate updateFolderContent];
+                        }
+                        weakSelf.progressView.hidden = YES;
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    }
+                }];
+            }
+            else
+            {
+                self.progressView.progress = 1.0;
+                if ([self.addNewItemDelegate respondsToSelector:@selector(updateFolderContent)])
+                {
+                    [self.addNewItemDelegate updateFolderContent];
+                }
+                self.progressView.hidden = YES;
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    } progressBlock:^(unsigned long long bytesTransferred, unsigned long long bytesTotal) {
+        self.progressView.progress = ((float)bytesTransferred/(float)bytesTotal) - 0.3;
+    }];
 }
 
 #pragma mark - Add photo delegate
 
-- (void) updatePhotoInfoWithName:(NSString *)name description:(NSString *)description tags:(NSArray *)tags
+- (void)updatePhotoInfoWithName:(NSString *)name description:(NSString *)description tags:(NSArray *)tags
 {
     self.photoLabel.text = name;            
     [self uploadPhotoWithName:name description:description tags:tags];
@@ -195,45 +195,56 @@
     [super viewDidLoad];
     self.progressView.hidden = YES;
     self.activityIndicatorView.hidden = YES;
-    self.isFolderTextInput = YES;
-    if (self.activityIndicatorView.isAnimating) 
+    if (self.activityIndicatorView.isAnimating)
     {
         [self.activityIndicatorView stopAnimating];
     }
     
-    if (UIUserInterfaceIdiomPhone == [[UIDevice currentDevice] userInterfaceIdiom]) 
-    {
-        self.isIPad = NO;
-    }
-    else 
-    {
-        self.isIPad = YES;
-    }
-        
+    self.isIPad = (UIUserInterfaceIdiomPad == [[UIDevice currentDevice] userInterfaceIdiom]);
+    
     self.navigationItem.title = localized(@"add_new_title");
     self.photoLabel.text = localized(@"add_photo_option");
     self.folderLabel.text = localized(@"add_folder_option");
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAcquiredScanNotification:) name:kNotificationAcquiredScan object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (0 == indexPath.row) 
+    switch (indexPath.row)
     {
-        self.isFolderTextInput = YES;
-        [self showTextInputAlert];
-    }
-    if (1 == indexPath.row) 
-    {
-        self.isFolderTextInput = NO;
-        [self loadImagePicker];
+        // Add Folder
+        case 0:
+        {
+            [self showTextInputAlert];
+            break;
+        }
+        
+        // Add Photo
+        case 1:
+        {
+            [self loadImagePicker];
+            break;
+        }
+        
+        // Acquire Scan
+        case 2:
+        {
+            [self acquireScan];
+            break;
+        }
     }
 }
 
-
-
 #pragma mark - Alert View Delegate
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (UIAlertViewStylePlainTextInput != alertView.alertViewStyle) 
@@ -256,13 +267,11 @@
     {
         return NO;
     }
-    else
-    {
-        return YES;
-    }
+    return YES;
 }
 
 #pragma mark - Image Picker Controller Delegate
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -299,6 +308,7 @@
 }
 
 #pragma mark - Segue logic
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     [[segue destinationViewController] setSession:self.session];
@@ -307,6 +317,7 @@
 }
 
 #pragma mark - private methods
+
 - (void)showTextInputAlert
 {
     NSString *message = localized(@"folder_dialog_message");
@@ -352,6 +363,38 @@
     }
 }
 
+#pragma mark - Fujitsu ScanSnap Integration
 
+- (void)acquireScan
+{
+    // Launch the ScanSnap.app with basic, default parameters
+    NSString *urlString = [NSString stringWithFormat:@"scansnap:///Scan&AutoDelete=1&OutMode=1&CallBack=%@", kMainApplicationURLScheme];
+    NSURL *url = [NSURL URLWithString:urlString];
+    BOOL openResult = [[UIApplication sharedApplication] openURL:url];
+    
+    if (!openResult)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Acquire Scan" message:@"Couldn't start the ScanSnap.app" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil] show];
+    }
+}
+
+- (void)handleAcquiredScanNotification:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    NSArray *fileList = [userInfo objectForKey:@"files"];
+    
+    // DEMO CODE: Upload first file only
+    NSString *fileName = [fileList objectAtIndex:0];
+
+    // Get file data from the SnapScan clipboard
+    UIPasteboard *pasteboard = [UIPasteboard pasteboardWithName:@"SSCAPasteBoard" create:NO];
+    NSData *fileData = [pasteboard dataForPasteboardType:@"SSCAPasteBoardType"];
+    
+    // Upload the file
+    NSString *mimeType = [fileName hasSuffix:@".pdf"] ? @"application/pdf" : @"image/jpeg";
+    AlfrescoContentFile *contentFile = [[AlfrescoContentFile alloc] initWithData:fileData mimeType:mimeType];
+    
+    [self uploadContentFile:contentFile name:fileName description:@"Acquired via Fujitsu ScanSnap ix500" tags:nil];
+}
 
 @end
