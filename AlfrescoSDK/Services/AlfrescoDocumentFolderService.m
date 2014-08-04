@@ -456,6 +456,15 @@
                 opContext.skipCount = listingContext.skipCount;
             }
             
+            if (listingContext.sortProperty != nil)
+            {
+                opContext.orderBy = listingContext.sortProperty;
+            }
+            else
+            {
+                opContext.orderBy = @"cmis:name";
+            }
+            
             request.httpRequest = [folder retrieveChildrenWithOperationContext:opContext completionBlock:^(CMISPagedResult *pagedResult, NSError *error){
                 if (nil == pagedResult)
                 {
@@ -470,21 +479,7 @@
                     {
                         [children addObject:[self.objectConverter nodeFromCMISObject:node]];
                     }
-                    NSArray *sortedChildren = nil;
-                    if (0 < children.count)
-                    {
-                        sortedChildren = [AlfrescoSortingUtils sortedArrayForArray:children
-                                                                           sortKey:listingContext.sortProperty
-                                                                     supportedKeys:self.supportedSortKeys
-                                                                        defaultKey:self.defaultSortKey
-                                                                         ascending:listingContext.sortAscending];
-                    }
-                    else
-                    {
-                        sortedChildren = @[];
-                    }
-                    pagingResult = [[AlfrescoPagingResult alloc] initWithArray:sortedChildren hasMoreItems:pagedResult.hasMoreItems totalItems:(int)pagedResult.numItems];
-//                    pagingResult = [AlfrescoPagingUtils pagedResultFromArray:sortedChildren listingContext:listingContext];
+                    pagingResult = [[AlfrescoPagingResult alloc] initWithArray:children hasMoreItems:pagedResult.hasMoreItems totalItems:(int)pagedResult.numItems];
                     completionBlock(pagingResult, nil);
                 }
             }];
